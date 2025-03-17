@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.overflow-hidden {
+	overflow: hidden;
+}
+.flex {
+	display: flex;
+}
+.justify-between {
+	justify-content: space-between;
+}
+.wrap-12 {
+	flex-wrap: wrap;
+	gap: 12px;
+}
+.align-center {
+	align-items: center;
+}
+.dis-none {
+	display: none !important;
+}
