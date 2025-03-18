@@ -1,6 +1,7 @@
 <template>
 	<main class="home">
 		<HomeHero />
+		<HomeAbout />
 	</main>
 </template>
 

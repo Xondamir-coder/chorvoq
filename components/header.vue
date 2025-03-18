@@ -30,7 +30,8 @@
 			<button
 				class="header__language"
 				v-for="(language, i) in languages"
-				:key="language.locale">
+				:key="language.locale"
+				@click="setLocale(language.locale)">
 				<span>{{ language.label }}</span>
 				<span v-if="i != languages.length - 1">/</span>
 			</button>
@@ -39,6 +40,9 @@
 </template>
 
 <script setup>
+const { routingLinks, languages } = useConstants();
+const { setLocale } = useI18n();
+
 const isMenuOpen = ref(false);
 const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value);
 </script>

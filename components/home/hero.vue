@@ -7,18 +7,17 @@
 		</div>
 		<div class="hero__content">
 			<div class="hero__content-texts">
-				<h1 class="hero__title">Chorvoq Darvozasi</h1>
+				<h1 class="hero__title">{{ $t('sitename') }}</h1>
 				<h2 class="hero__subtitle">
+					{{ $t('home-hero-subtitle-1') }} <br />
 					<span class="big">
-						Новый взгляд на загородную жизнь. <br />
-						Гармония природы и городского комфорта
+						{{ $t('home-hero-subtitle-2') }}
 					</span>
-					<span class="small">новый взгляд на загородную жизнь.</span>
 				</h2>
 			</div>
 			<div class="hero__buttons">
-				<NuxtLink to="/plan" class="hero__button">Выбрать квартиру</NuxtLink>
-				<a href="tel:+998 71 210 44 54" class="hero__button">Связаться с нами</a>
+				<NuxtLink to="/plan" class="hero__button">{{ $t('select-apartment') }}</NuxtLink>
+				<a href="tel:+998 71 210 44 54" class="hero__button">{{ $t('contact-us') }}</a>
 			</div>
 		</div>
 	</section>
@@ -60,6 +59,8 @@
 
 .hero {
 	display: grid;
+	height: 100vh;
+	overflow: hidden;
 
 	& > * {
 		grid-area: 1/1/2/2;
@@ -76,7 +77,7 @@
 		text-wrap: nowrap;
 		animation: 0.3s 0.3s backwards;
 		@media only screen and (min-width: $bp-md) {
-			max-width: 171px;
+			max-width: fit-content;
 		}
 		&:first-child {
 			border-color: transparent;
@@ -99,25 +100,23 @@
 	}
 	&__buttons {
 		display: flex;
-		gap: clamp(30px, 2.9vw, 44px);
+		gap: clamp(12px, 2.9vw, 44px);
 		flex-wrap: wrap;
 	}
 	&__title {
 		letter-spacing: -2px;
-		font-size: clamp(47px, 4.5vw, 66px);
+		font-size: clamp(40px, 4.5vw, 66px);
 		line-height: 0.89;
 		animation: slide-from-top 0.7s;
 	}
 	&__subtitle {
+		font-weight: 200;
 		font-size: clamp(33px, 2.7vw, 41px);
 		letter-spacing: -2px;
 		line-height: 1.19;
 		animation: slide-from-top 0.7s backwards 0.1s;
-
-		& .small {
-			@media only screen and (min-width: $bp-md) {
-				display: none;
-			}
+		@media only screen and (max-width: $bp-md) {
+			text-transform: lowercase;
 		}
 		& .big {
 			@media only screen and (max-width: $bp-md) {
@@ -138,6 +137,8 @@
 			align-items: center;
 			text-align: center;
 			align-self: stretch;
+			justify-self: stretch;
+			padding-top: 90px;
 		}
 		&-texts {
 			display: flex;
