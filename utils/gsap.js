@@ -28,7 +28,7 @@ export const GSAPAnimation = (trigger, { method = 'from', animProps, scrollTrigg
 		throw new Error('Trigger is required for GSAP animation');
 	}
 
-	$gsap[method](trigger, {
+	return $gsap[method](trigger, {
 		// Default values
 		opacity: method === 'from' ? 0 : 1,
 

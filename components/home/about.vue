@@ -10,19 +10,15 @@
 			<p class="about__top-text" ref="topTextRef">{{ $t('home-about-top-text') }}</p>
 		</div>
 		<div class="about__center">
-			<ul class="about__details">
-				<li
-					class="about__detail"
-					v-for="detail in details"
-					:key="detail.label"
-					ref="detailsRef">
+			<ul class="about__details" ref="detailsRef">
+				<li class="about__detail" v-for="detail in details" :key="detail.label">
 					<h3 class="about__detail-amount">{{ detail.amount }}</h3>
 					<p class="about__detail-label">{{ detail.label }}</p>
 				</li>
 			</ul>
 		</div>
 		<div class="about__bottom">
-			<BgPattern class="about__pattern" />
+			<VectorsBgPattern class="about__pattern" />
 			<div
 				class="about__mission"
 				v-for="mission in missions"
@@ -37,7 +33,9 @@
 </template>
 
 <script setup>
-const { t } = useI18n();
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+const { t, locale } = useI18n();
 
 const details = computed(() => [
 	{
@@ -70,6 +68,18 @@ const topLeftRef = ref();
 const topTextRef = ref();
 const detailsRef = ref();
 const missionsRef = ref();
+let animations;
+
+const startAnimations = () => {
+	animations = [
+		GSAPAnimation(detailsRef.value.children, {
+			animProps: { y: 25, stagger: 0.1 }
+		}),
+		GSAPAnimation(missionsRef.value, {
+			animProps: { y: 35, stagger: 0.1 }
+		})
+	];
+};
 
 onMounted(() => {
 	GSAPAnimation(topLeftRef.value, {
@@ -78,12 +88,20 @@ onMounted(() => {
 	GSAPAnimation(topTextRef.value, {
 		animProps: { x: 75 }
 	});
-	GSAPAnimation(detailsRef.value, {
-		animProps: { y: 25, stagger: 0.1 }
+	startAnimations();
+});
+
+watch(locale, async () => {
+	animations.forEach(animation => {
+		if (animation.scrollTrigger) {
+			animation.scrollTrigger.kill();
+		}
+		animation.kill();
 	});
-	GSAPAnimation(missionsRef.value, {
-		animProps: { y: 35, stagger: 0.1 }
-	});
+	animations = [];
+	await nextTick();
+	ScrollTrigger.refresh();
+	startAnimations();
 });
 </script>
 

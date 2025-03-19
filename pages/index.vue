@@ -2,6 +2,13 @@
 	<main class="home">
 		<HomeHero />
 		<HomeAbout />
+		<HomeApartments />
+		<HomeAdvantages />
+		<HomeAvenues />
+		<HomePartners />
+		<HomeOffer />
+		<HomeMap />
+		<HomeContact />
 	</main>
 </template>
 

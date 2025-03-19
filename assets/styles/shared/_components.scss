@@ -1,14 +1,10 @@
 @use '../abstracts/variables' as *;
 
-.icon {
-	$duration: 0.3s;
-	width: clamp(20px, 1.3vw, 24px);
-	transition: fill $duration, stroke $duration, transform $duration;
-	&-rect {
-		width: clamp(32px, 1.9vw, 36px);
-		fill: $clr-primary;
-	}
-}
-.logo {
-	fill: $clr-primary;
+.section-title {
+	font-weight: 700;
+	font-size: clamp(30px, 2.4vw, 36px);
+	line-height: 1.04;
+	letter-spacing: -2px;
+	color: $clr-primary;
+	align-self: center;
 }
