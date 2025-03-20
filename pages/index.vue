@@ -9,6 +9,7 @@
 		<HomeOffer />
 		<HomeMap />
 		<HomeContact />
+		<HomeMessage />
 	</main>
 </template>
 

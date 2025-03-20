@@ -8,14 +8,29 @@
 		<div class="contact__main">
 			<VectorsStarGroupedPattern class="contact__pattern" />
 			<div class="contact__map">
-				<img src="~/assets/images/location-1.jpg" alt="map" />
+				<img src="~/assets/images/location-1.jpg" alt="map" class="contact__map-image" />
 				<h2 class="contact__map-title">{{ $t('home-contact-title') }}</h2>
 			</div>
 		</div>
 	</section>
 </template>
 
-<script setup></script>
+<script setup>
+onMounted(() => {
+	const parentPrefix = '#home-contact .contact';
+	GSAPAnimation(`${parentPrefix}__top>*`, {
+		animProps: { y: 20, stagger: 0.1 },
+		scrollTriggerOptions: { trigger: `${parentPrefix}__top` }
+	});
+	GSAPAnimation(`${parentPrefix}__map`, {
+		animProps: { scale: 0.95 }
+	});
+	GSAPAnimation(`${parentPrefix}__pattern path`, {
+		animProps: { rotation: -45, stagger: 0.05 },
+		scrollTriggerOptions: { trigger: `${parentPrefix}__pattern` }
+	});
+});
+</script>
 
 <style lang="scss" scoped>
 .contact {
@@ -30,6 +45,11 @@
 		& > * {
 			grid-area: 1/1/2/2;
 		}
+		&-image {
+			@media only screen and (max-width: $bp-md) {
+				aspect-ratio: 440/425;
+			}
+		}
 		&-title {
 			background-color: #fff;
 			place-self: flex-end;
@@ -40,6 +60,10 @@
 			color: $clr-primary;
 			padding-block: 17px;
 			padding-inline: 40px;
+			@media only screen and (max-width: $bp-md) {
+				justify-self: center;
+				padding-block: 12px;
+			}
 		}
 	}
 	&__main {

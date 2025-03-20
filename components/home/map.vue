@@ -30,6 +30,11 @@ onMounted(() => {
 .map {
 	display: grid;
 	margin-block: clamp(100px, 10vw, 150px);
+	&__image {
+		@media only screen and (max-width: $bp-md) {
+			aspect-ratio: 482/800;
+		}
+	}
 	&__button {
 		flex: 1;
 		padding-inline: 20px;
@@ -65,7 +70,7 @@ onMounted(() => {
 	}
 	&__buttons {
 		display: flex;
-		gap: clamp(30px, 3.5vw, 53px);
+		gap: clamp(16px, 3.5vw, 53px);
 	}
 	&__overlay {
 		background: #03030352;
