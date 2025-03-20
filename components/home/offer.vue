@@ -25,6 +25,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .offer {
 	display: grid;
+	overflow: hidden;
 
 	@media only screen and (min-width: $bp-md) {
 		padding-inline: $layout-spacing;

@@ -1,5 +1,5 @@
 <template>
-	<section class="about">
+	<section class="about" id="home-about">
 		<div class="about__top">
 			<div class="about__top-left" ref="topLeftRef">
 				<h3 class="about__top-label">{{ $t('route-about') }}</h3>

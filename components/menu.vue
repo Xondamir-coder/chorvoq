@@ -2,9 +2,24 @@
 	<div class="menu">
 		<VectorsLogo class="menu__logo" />
 		<nav class="menu__nav">
-			<NuxtLink v-for="link in links" :key="link.to" :to="link.to" class="menu__link">
-				{{ link.label }}
+			<a @click.prevent="navigateSection('#')" href="#" class="menu__link">
+				{{ $t('route-home') }}
+			</a>
+			<NuxtLink to="/plan" class="menu__link">
+				{{ $t('route-plan') }}
 			</NuxtLink>
+			<a
+				@click.prevent="navigateSection('#home-avenues')"
+				href="#home-avenues"
+				class="menu__link">
+				{{ $t('route-projects') }}
+			</a>
+			<a
+				@click.prevent="navigateSection('#home-contacts')"
+				href="#home-contacts"
+				class="menu__link">
+				{{ $t('route-contacts') }}
+			</a>
 		</nav>
 		<div class="menu__contacts">
 			<p class="menu__contacts-label">Контактные данные</p>
@@ -27,24 +42,11 @@
 </template>
 
 <script setup>
-const links = [
-	{
-		label: 'Главная',
-		to: '/'
-	},
-	{
-		label: 'Ген. План',
-		to: '/plan'
-	},
-	{
-		label: 'проект',
-		to: '/project'
-	},
-	{
-		label: 'Контакты',
-		to: '/contacts'
-	}
-];
+const emits = defineEmits(['close']);
+const navigateSection = to => {
+	$lenis.scrollTo(to === '#' ? 0 : to);
+	emits('close');
+};
 </script>
 
 <style lang="scss" scoped>

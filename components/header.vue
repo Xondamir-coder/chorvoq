@@ -10,13 +10,18 @@
 			<IconsX :class="{ active: isMenuOpen }" />
 		</button>
 		<Transition name="fade">
-			<Menu v-if="isMenuOpen" />
+			<Menu v-if="isMenuOpen" @close="toggleMenu" />
 		</Transition>
 		<VectorsLogo class="header__vector header__vector--center" />
 		<nav class="nav">
-			<NuxtLink v-for="link in routingLinks" :key="link.to" :to="link.to" class="nav__link">
+			<a
+				v-for="link in routingLinks"
+				:key="link.to"
+				:href="link.to"
+				class="nav__link"
+				@click.prevent="navigateSection(link.to)">
 				{{ link.label }}
-			</NuxtLink>
+			</a>
 		</nav>
 		<div class="header__cta">
 			<div class="header__dropdown">
@@ -41,10 +46,15 @@
 
 <script setup>
 const { routingLinks, languages } = useConstants();
+const { $lenis } = useNuxtApp();
 const { setLocale } = useI18n();
 
 const isMenuOpen = ref(false);
-const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value);
+const toggleMenu = () => {
+	isMenuOpen.value = !isMenuOpen.value;
+	isMenuOpen.value ? $lenis.stop() : $lenis.start();
+};
+const navigateSection = to => $lenis.scrollTo(to === '#' ? 0 : to);
 </script>
 
 <style lang="scss" scoped>

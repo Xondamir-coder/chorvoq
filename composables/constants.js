@@ -4,23 +4,23 @@ export const useConstants = () => {
 	const routingLinks = computed(() => [
 		{
 			label: t('route-home'),
-			to: '/'
+			to: '#'
 		},
 		{
 			label: t('route-about'),
-			to: '/'
+			to: '#home-about'
 		},
 		{
 			label: t('route-projects'),
-			to: '/'
+			to: '#home-avenues'
 		},
 		{
 			label: t('route-advantage'),
-			to: '/'
+			to: '#home-advantages'
 		},
 		{
 			label: t('route-contacts'),
-			to: '/'
+			to: '#home-message'
 		}
 	]);
 
