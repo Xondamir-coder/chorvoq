@@ -1,5 +1,5 @@
 <template>
-	<footer class="footer" id="footer">
+	<footer class="footer" id="footer" v-if="$route === '/plan'">
 		<VectorsLogo class="footer__logo" />
 		<nav class="footer__nav">
 			<a
@@ -39,7 +39,9 @@ const { routingLinks } = useConstants();
 const navigateSection = to => $lenis.scrollTo(to === '#' ? 0 : to);
 
 onMounted(() => {
-	Array.from(document.querySelector('#footer').children).forEach(el => {
+	const footer = document.querySelector('#footer');
+	if (!footer) return;
+	Array.from(footer).forEach(el => {
 		GSAPAnimation(el, {
 			animProps: { y: 20 },
 			scrollTriggerOptions: { scrub: false, toggleActions: 'play none none reverse' }
