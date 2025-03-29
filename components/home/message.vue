@@ -78,7 +78,7 @@ onMounted(() => {
 	overflow: hidden;
 	&__map {
 		display: grid;
-		background-image: url('~/assets/images/location-2.jpg');
+		background-image: url('~/assets/images/location-2.avif');
 		background-size: cover;
 		background-repeat: no-repeat;
 		@media only screen and (max-width: $bp-md) {
@@ -137,7 +137,7 @@ onMounted(() => {
 		}
 	}
 	&__cols {
-		background-image: url('~/assets/images/home-restaurant-hotel.jpg');
+		background-image: url('~/assets/images/home-restaurant-hotel.avif');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;

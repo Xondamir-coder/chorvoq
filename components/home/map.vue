@@ -1,6 +1,6 @@
 <template>
 	<section class="map" id="home-map">
-		<img src="~/assets/images/buildings.jpg" alt="buildings map" class="map__image" />
+		<img src="~/assets/images/plan/masterplan.avif" alt="buildings map" class="map__image" />
 		<div class="map__overlay"></div>
 		<div class="map__buttons">
 			<button class="map__button">{{ $t('select-apartment') }}</button>

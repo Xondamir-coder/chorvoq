@@ -24,20 +24,7 @@ export const useConstants = () => {
 		}
 	]);
 
-	const languages = [
-		{
-			label: 'Eng',
-			locale: 'en'
-		},
-		{
-			label: 'Ru',
-			locale: 'ru'
-		},
-		{
-			label: 'Uz',
-			locale: 'uz'
-		}
-	];
+	const languages = ['en', 'ru', 'uz'];
 
 	return {
 		routingLinks,

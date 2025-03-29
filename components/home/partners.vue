@@ -6,7 +6,7 @@
 		</div>
 		<div class="partners__list">
 			<VectorsDiscoverInvest class="partners__item" />
-			<img src="~/assets/images/dream-city.jpg" alt="dream city" class="partners__item" />
+			<img src="~/assets/images/dream-city.avif" alt="dream city" class="partners__item" />
 			<VectorsPrimeTower class="partners__item" />
 			<VectorsOzguven class="partners__item" />
 		</div>

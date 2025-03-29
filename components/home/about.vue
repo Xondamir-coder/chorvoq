@@ -138,7 +138,7 @@ watch(locale, async () => {
 		}
 	}
 	&__center {
-		background-image: url('~/assets/images/shops.jpg');
+		background-image: url('~/assets/images/shops.avif');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;

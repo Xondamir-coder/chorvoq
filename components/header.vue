@@ -17,7 +17,7 @@
 			<a
 				v-for="link in routingLinks"
 				:key="link.to"
-				:href="link.to"
+				:href="`/${link.to}`"
 				class="nav__link"
 				@click.prevent="navigateSection(link.to)">
 				{{ link.label }}
@@ -35,9 +35,9 @@
 			<button
 				class="header__language"
 				v-for="(language, i) in languages"
-				:key="language.locale"
-				@click="setLocale(language.locale)">
-				<span>{{ language.label }}</span>
+				:key="language"
+				@click="setLocale(language)">
+				<span>{{ capitalize(language) }}</span>
 				<span v-if="i != languages.length - 1">/</span>
 			</button>
 		</div>
@@ -48,13 +48,19 @@
 const { routingLinks, languages } = useConstants();
 const { $lenis } = useNuxtApp();
 const { setLocale } = useI18n();
+const route = useRoute();
+const router = useRouter();
 
 const isMenuOpen = ref(false);
+
 const toggleMenu = () => {
 	isMenuOpen.value = !isMenuOpen.value;
 	isMenuOpen.value ? $lenis.stop() : $lenis.start();
 };
-const navigateSection = to => $lenis.scrollTo(to === '#' ? 0 : to);
+const navigateSection = to => {
+	if (route.name !== 'index') router.push({ path: '/', hash: to === '#' ? '' : to });
+	else $lenis.scrollTo(to === '#' ? 0 : to);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -128,9 +134,9 @@ const navigateSection = to => $lenis.scrollTo(to === '#' ? 0 : to);
 	}
 }
 .header {
-	background: #ffffff0d;
-	border: 1px solid #ffffff26;
 	backdrop-filter: blur(30px);
+	background: #0000001a;
+	border: 1px solid #ffffff26;
 	position: fixed;
 	z-index: 100;
 	top: 0;

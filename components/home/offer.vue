@@ -1,6 +1,6 @@
 <template>
 	<section class="offer" id="home-offer">
-		<img src="~/assets/images/home-offer.jpg" alt="shops banner" class="offer__image" />
+		<img src="~/assets/images/home-offer.avif" alt="shops banner" class="offer__image" />
 		<div class="offer__content">
 			<h3 class="offer__label">{{ $t('easy-cheap') }}</h3>
 			<h2 class="offer__title">{{ $t('home-offer-title') }}</h2>

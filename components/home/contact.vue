@@ -8,7 +8,7 @@
 		<div class="contact__main">
 			<VectorsStarGroupedPattern class="contact__pattern" />
 			<div class="contact__map">
-				<img src="~/assets/images/location-1.jpg" alt="map" class="contact__map-image" />
+				<img src="~/assets/images/location-1.avif" alt="map" class="contact__map-image" />
 				<h2 class="contact__map-title">{{ $t('home-contact-title') }}</h2>
 			</div>
 		</div>

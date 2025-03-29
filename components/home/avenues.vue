@@ -13,12 +13,12 @@
 </template>
 
 <script setup>
-import img1 from '~/assets/images/avenue-1.jpg';
-import img2 from '~/assets/images/avenue-2.jpg';
-import img3 from '~/assets/images/avenue-3.jpg';
-import img4 from '~/assets/images/avenue-4.jpg';
-import img5 from '~/assets/images/avenue-5.jpg';
-import img6 from '~/assets/images/avenue-6.jpg';
+import img1 from '~/assets/images/avenue-1.avif';
+import img2 from '~/assets/images/avenue-2.avif';
+import img3 from '~/assets/images/avenue-3.avif';
+import img4 from '~/assets/images/avenue-4.avif';
+import img5 from '~/assets/images/avenue-5.avif';
+import img6 from '~/assets/images/avenue-6.avif';
 
 const { t } = useI18n();
 

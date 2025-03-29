@@ -1,5 +1,5 @@
 <template>
-	<footer class="footer" id="footer" v-if="$route === '/plan'">
+	<footer class="footer" id="footer" v-if="!isPlan">
 		<VectorsLogo class="footer__logo" />
 		<nav class="footer__nav">
 			<a
@@ -36,8 +36,16 @@
 
 <script setup>
 const { routingLinks } = useConstants();
-const navigateSection = to => $lenis.scrollTo(to === '#' ? 0 : to);
+const route = useRoute();
+const router = useRouter();
+const { $lenis } = useNuxtApp();
 
+const isPlan = computed(() => route.name === 'plan');
+
+const navigateSection = to => {
+	if (route.name !== 'index') router.push({ path: '/', hash: to === '#' ? '' : to });
+	else $lenis.scrollTo(to === '#' ? 0 : to);
+};
 onMounted(() => {
 	const footer = document.querySelector('#footer');
 	if (!footer) return;

@@ -1,7 +1,7 @@
 <template>
 	<main class="plan">
 		<div class="plan__main" ref="mainRef">
-			<img src="~/assets/images/buildings.jpg" alt="plan banner" class="plan__image" />
+			<img src="~/assets/images/plan/masterplan.avif" alt="plan banner" class="plan__image" />
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 2048 1152"
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import img from '~/assets/images/hotel-close.jpg';
+import img from '~/assets/images/hotel-close.avif';
 const data = {
 	img,
 	title: "Savdo va ko'ngilochar markaz - bu shahar aholisi va mehmonlari"
@@ -58,24 +58,25 @@ const handleMouseMove = e => {
 };
 
 onMounted(() => {
-	svgRef.value.addEventListener('mouseover', e => {
+	svgRef.value?.addEventListener('mouseover', e => {
 		const val = e.target.closest('path[data-hover]')?.dataset.hover;
 		if (!val) return;
 		tooltipTitle.value = val;
 	});
-	svgRef.value.addEventListener('click', e => {
+	svgRef.value?.addEventListener('click', e => {
 		e.target.closest('path[data-hover]') ? (showModal.value = true) : (showModal.value = false);
 	});
 
 	if (window.innerWidth > 992) {
-		document.addEventListener('mousemove', handleMouseMove);
+		svgRef.value?.addEventListener('mousemove', handleMouseMove);
 	}
 });
 
 onUnmounted(() => {
-	svgRef.value.removeEventListener('mouseover');
+	svgRef.value?.removeEventListener('mouseover');
+	svgRef.value?.removeEventListener('click');
 	if (window.innerWidth > 992) {
-		document.removeEventListener('mousemove');
+		svgRef.value?.removeEventListener('mousemove');
 	}
 });
 

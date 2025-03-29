@@ -26,7 +26,7 @@
 					<IconsArrowLeft class="apartments__arrow-icon" />
 				</button>
 				<img
-					src="~/assets/images/home-apartment.png"
+					src="~/assets/images/home-apartment.webp"
 					alt="apartment example"
 					width="683"
 					height="374"
