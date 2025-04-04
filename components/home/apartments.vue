@@ -10,38 +10,54 @@
 					{{ $t('apartments') }}&ThickSpace;&ThickSpace; /&ThickSpace;&ThickSpace;
 					{{ $t('commercial-premises') }}
 				</span>
-				<h2 class="apartments__title">{{ $t('home-apartments-title') }}</h2>
+				<h2 class="apartments__title">
+					{{ currentTitle }}
+				</h2>
 			</div>
 			<div class="apartments__content">
 				<ul class="apartments__details">
-					<li class="apartments__detail" v-for="(detail, i) in details" :key="i">
-						<span class="apartments__detail-rooms">{{ detail.room }}</span>
-						<h3 class="apartments__detail-area">{{ detail.area }}</h3>
-					</li>
+					<TransitionGroup name="fade">
+						<li
+							class="apartments__detail"
+							v-for="(detail, i) in currentDetails"
+							:key="i">
+							<span class="apartments__detail-rooms">{{ detail.room }}</span>
+							<h3 class="apartments__detail-area">
+								{{ detail.area }} {{ $t('m-squared') }}
+							</h3>
+						</li>
+					</TransitionGroup>
 				</ul>
-				<button class="apartments__button">{{ $t('learn-more') }}</button>
+				<NuxtLink to="/plan" class="apartments__button">{{ $t('learn-more') }}</NuxtLink>
 			</div>
 			<div class="apartments__carousel">
-				<button class="apartments__arrow apartments__arrow--mobile">
+				<button
+					class="apartments__arrow apartments__arrow--mobile"
+					@click="changeApartment('prev')">
 					<IconsArrowLeft class="apartments__arrow-icon" />
 				</button>
-				<img
-					src="~/assets/images/home-apartment.webp"
-					alt="apartment example"
-					width="683"
-					height="374"
-					class="apartments__image" />
-				<button class="apartments__arrow apartments__arrow--mobile">
-					<IconsArrowLeft class="apartments__arrow-icon rotate-180" />
-				</button>
+				<div class="apartments__images">
+					<img
+						class="apartments__image"
+						:alt="$t('apartment')"
+						v-for="(apartment, i) in apartments"
+						:key="i"
+						:src="apartment.img"
+						:class="{ active: i == currentIndex }" />
+				</div>
 				<div class="apartments__arrows">
-					<button class="apartments__arrow">
+					<button class="apartments__arrow" @click="changeApartment('prev')">
 						<IconsArrowLeft class="apartments__arrow-icon" />
 					</button>
-					<button class="apartments__arrow">
+					<button class="apartments__arrow" @click="changeApartment('next')">
 						<IconsArrowLeft class="apartments__arrow-icon rotate-180" />
 					</button>
 				</div>
+				<button
+					class="apartments__arrow apartments__arrow--mobile"
+					@click="changeApartment('next')">
+					<IconsArrowLeft class="apartments__arrow-icon rotate-180" />
+				</button>
 			</div>
 		</div>
 	</section>
@@ -49,48 +65,194 @@
 
 <script setup>
 const { t } = useI18n();
-const details = computed(() => [
+import img1 from '~/assets/images/home-apartment-1.webp';
+import img2 from '~/assets/images/home-apartment-2.webp';
+import img3 from '~/assets/images/home-apartment-3.webp';
+import img4 from '~/assets/images/home-apartment-4.webp';
+import img5 from '~/assets/images/home-apartment-5.webp';
+
+const apartments = [
 	{
-		room: `1 ${t('gym')}`,
-		area: '13.06'
+		id: 38,
+		area: 105,
+		img: img1,
+		details: [
+			{
+				room: `${t('gym')} + ${t('kitchen')}`,
+				area: '13.06'
+			},
+			{
+				room: t('kidsroom'),
+				area: '11.4'
+			},
+			{
+				room: t('kidsroom'),
+				area: '10.9'
+			},
+			{
+				room: t('bedroom'),
+				area: '15.9'
+			},
+			{
+				room: t('bathroom'),
+				area: '3.7'
+			},
+			{
+				room: t('bathroom'),
+				area: '3.8'
+			},
+			{
+				room: t('terrace'),
+				area: '30.7'
+			},
+			{
+				room: t('hallway'),
+				area: '13.6'
+			}
+		]
 	},
 	{
-		room: `2 ${t('bedroom')}`,
-		area: '3.06'
+		id: 15,
+		area: 57,
+		img: img2,
+		details: [
+			{
+				room: `${t('gym')} + ${t('kitchen')}`,
+				area: '20.7'
+			},
+			{
+				room: t('kidsroom'),
+				area: '10.9'
+			},
+			{
+				room: t('bedroom'),
+				area: '12'
+			},
+			{
+				room: t('bathroom'),
+				area: '4.1'
+			},
+			{
+				room: t('terrace'),
+				area: '8.5'
+			},
+			{
+				room: t('hallway'),
+				area: '3.6'
+			}
+		]
 	},
 	{
-		room: `1 ${t('gym')}`,
-		area: '13.06'
+		id: 12,
+		area: 39,
+		img: img3,
+		details: [
+			{
+				room: `${t('gym')} + ${t('kitchen')}`,
+				area: '20.7'
+			},
+			{
+				room: t('hallway'),
+				area: '2.7'
+			},
+			{
+				room: t('bedroom'),
+				area: '10.6'
+			},
+			{
+				room: t('bathroom'),
+				area: '3.8'
+			},
+			{
+				room: t('terrace'),
+				area: '4.4'
+			}
+		]
 	},
 	{
-		room: `2 ${t('bedroom')}`,
-		area: '3.06'
+		id: 30,
+		area: 25,
+		img: img4,
+		details: [
+			{
+				room: t('living-space'),
+				area: '19.9'
+			},
+			{
+				room: t('bathroom'),
+				area: '3.8'
+			},
+			{
+				room: t('terrace'),
+				area: '3.6'
+			}
+		]
 	},
 	{
-		room: `2 ${t('gym')}`,
-		area: '13.06'
-	},
-	{
-		room: `1 ${t('gym')}`,
-		area: '13.06'
-	},
-	{
-		room: `2 ${t('bedroom')}`,
-		area: '3.06'
-	},
-	{
-		room: `1 ${t('gym')}`,
-		area: '13.06'
-	},
-	{
-		room: `2 ${t('bedroom')}`,
-		area: '3.06'
-	},
-	{
-		room: `2 ${t('gym')}`,
-		area: '13.06'
+		id: 30,
+		area: 153,
+		img: img5,
+		details: [
+			{
+				room: `${t('gym')} + ${t('kitchen')}`,
+				area: '45'
+			},
+			{
+				room: t('kidsroom'),
+				area: '9.4'
+			},
+			{
+				room: t('kidsroom'),
+				area: '9.4'
+			},
+			{
+				room: t('kidsroom'),
+				area: '13.6'
+			},
+			{
+				room: t('bedroom'),
+				area: '16.9'
+			},
+			{
+				room: t('bathroom'),
+				area: '4'
+			},
+			{
+				room: t('bathroom'),
+				area: '5.9'
+			},
+			{
+				room: t('hall'),
+				area: '9.5'
+			},
+			{
+				room: t('terrace'),
+				area: '30.9'
+			},
+			{
+				room: t('terrace'),
+				area: '28.6'
+			}
+		]
 	}
-]);
+];
+
+const currentIndex = ref(0);
+
+const currentApartment = computed(() => apartments[currentIndex.value]);
+const currentDetails = computed(() => currentApartment.value.details);
+const currentTitle = computed(
+	() => `${t('home-apartments-title')} ${currentApartment.value.id}
+					${t('with-area')} ${currentApartment.value.area} ${t('m-squared')}`
+);
+
+const changeApartment = direction => {
+	if (direction == 'next') {
+		currentIndex.value = (currentIndex.value + 1) % apartments.length;
+	} else {
+		currentIndex.value = (currentIndex.value - 1 + apartments.length) % apartments.length;
+	}
+};
 
 onMounted(() => {
 	const parentId = '#home-apartments';
@@ -105,15 +267,13 @@ onMounted(() => {
 	GSAPAnimation(`${parentPrefix}__top`, {
 		animProps: { y: 25 }
 	});
-	document.querySelectorAll(`${parentPrefix}__detail`).forEach((detail, i) => {
-		GSAPAnimation(detail, {
-			animProps: { y: 25 }
-		});
+	GSAPAnimation(`${parentPrefix}__details`, {
+		animProps: { y: 25 }
 	});
 	GSAPAnimation(`${parentPrefix}__button`, {
 		animProps: { scale: 0.8 }
 	});
-	GSAPAnimation(`${parentPrefix}__image`, {
+	GSAPAnimation(`${parentPrefix}__images`, {
 		animProps: { scale: 0.95 }
 	});
 });
@@ -142,9 +302,21 @@ onMounted(() => {
 			gap: 16px;
 		}
 	}
+	&__images {
+		filter: drop-shadow(20px 24px 34px rgba(0, 0, 0, 0.25));
+		flex: 1;
+		display: grid;
+	}
 	&__image {
+		grid-area: 1/1/2/2;
 		object-fit: contain;
 		height: 100%;
+		aspect-ratio: 2777/1519;
+		transition: opacity 0.5s ease, transform 0.5s ease;
+		&:not(.active) {
+			opacity: 0;
+			transform: scale(0.95);
+		}
 		@media only screen and (min-width: $bp-md) {
 			flex: 1;
 		}
@@ -212,6 +384,7 @@ onMounted(() => {
 			'details carousel';
 		@media only screen and (min-width: $bp-lg) {
 			grid-template-columns: 1fr 1.5fr;
+			grid-auto-rows: max-content 1fr;
 			column-gap: clamp(50px, 7.3vw, 110px);
 			row-gap: 17px;
 		}
@@ -226,6 +399,7 @@ onMounted(() => {
 	&__content {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		gap: 17px;
 		grid-area: details;
 	}
@@ -258,6 +432,7 @@ onMounted(() => {
 		font-size: clamp(12px, 1vw, 16px);
 		transition: background-color 0.3s, color 0.3s;
 		max-width: 300px;
+		text-align: center;
 		@media only screen and (max-width: $bp-md) {
 			align-self: center;
 			padding-inline: 65px;
@@ -282,6 +457,18 @@ onMounted(() => {
 			float: right;
 			transform: translate(45%, -45%);
 		}
+	}
+}
+.fade {
+	&-enter-active,
+	&-leave-active,
+	&-move {
+		transition: opacity 0.5s ease, transform 0.5s ease;
+	}
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
+		transform: translateY(10px);
 	}
 }
 </style>
