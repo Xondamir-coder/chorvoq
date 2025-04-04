@@ -1,9 +1,9 @@
 <template>
 	<section class="map" id="home-map">
-		<img src="~/assets/images/plan/masterplan.avif" alt="buildings map" class="map__image" />
+		<img src="~/assets/images/genplan.avif" alt="buildings map" class="map__image" />
 		<div class="map__overlay"></div>
 		<div class="map__buttons">
-			<button class="map__button">{{ $t('select-apartment') }}</button>
+			<NuxtLink to="/genplan" class="map__button">{{ $t('select-apartment') }}</NuxtLink>
 			<a href="tel:+998 71 210 44 54" class="map__button">{{ $t('contact-us') }}</a>
 		</div>
 		<div class="map__production">

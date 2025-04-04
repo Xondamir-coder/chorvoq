@@ -1,8 +1,20 @@
 <template>
 	<div class="tooltip" :style="{ top: `${position.y}px`, left: `${position.x}px` }">
-		<div class="tooltip__triangle"></div>
-		<h2 class="tooltip__title">{{ title }}</h2>
-		<p class="tooltip__text">{{ type }}</p>
+		<svg
+			width="200"
+			height="200"
+			viewBox="0 0 100 100"
+			xmlns="http://www.w3.org/2000/svg"
+			class="tooltip__arrow">
+			<polygon points="50,0 0,100 100,100" fill="white" stroke="#CAA564" stroke-width="10" />
+		</svg>
+		<div class="tooltip__item" v-for="item in items" :key="item.type">
+			<h2 class="tooltip__title">{{ item.title }}</h2>
+			<p class="tooltip__text">{{ item.type }}</p>
+		</div>
+		<div class="tooltip__pattern-container">
+			<VectorsStarPattern class="tooltip__pattern" />
+		</div>
 	</div>
 </template>
 
@@ -25,8 +37,7 @@ onBeforeUnmount(() => {
 });
 
 defineProps({
-	title: String,
-	type: String
+	items: Array
 });
 </script>
 
@@ -38,26 +49,38 @@ defineProps({
 	z-index: 10;
 	background-color: #fff;
 	padding: clamp(10px, 1vw, 16px);
+	padding-right: clamp(20px, 2.2vw, 36px);
 	transition: transform 0.3s, opacity 0.3s;
-	&__triangle {
-		width: 0;
-		height: 0;
-		border-top: 8px solid transparent;
-		border-bottom: 8px solid transparent;
-		border-right: 16px solid #fff;
+	border: 2px solid $clr-primary;
+	box-shadow: 0px 0px 114px 0px #0000009f;
+
+	&__pattern {
+		transform: translate(40%, 40%);
+		fill: rgba($clr-primary, 0.6);
+		&-container {
+			overflow: hidden;
+			width: 70%;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+	}
+	&__arrow {
+		width: 20px;
+		height: auto;
 		position: absolute;
 		left: 0;
-		bottom: 8px;
-		transform: translateX(-99%);
+		bottom: 0;
+		transform: translate(-100%, 6%) rotate(-90deg);
 	}
 	&__title {
-		font-size: clamp(20px, 1.6vw, 25px);
+		font-size: clamp(20px, 2vw, 35px);
 		letter-spacing: 0.33px;
-		color: $clr-secondary-dark;
+		color: #d4bb8a;
 		font-weight: 700;
 	}
 	&__text {
-		color: rgba(0, 0, 0, 0.4);
+		color: rgba(#8e734f, 0.4);
 		font-weight: 700;
 	}
 }

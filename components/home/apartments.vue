@@ -28,7 +28,7 @@
 						</li>
 					</TransitionGroup>
 				</ul>
-				<NuxtLink to="/plan" class="apartments__button">{{ $t('learn-more') }}</NuxtLink>
+				<NuxtLink to="/genplan" class="apartments__button">{{ $t('learn-more') }}</NuxtLink>
 			</div>
 			<div class="apartments__carousel">
 				<button

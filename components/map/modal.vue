@@ -4,14 +4,14 @@
 			<img :src="data.img" :alt="data.title" class="modal__image" />
 		</div>
 		<div class="modal__content">
-			<h3 class="modal__title">{{ phase }}</h3>
+			<h3 class="modal__title">{{ phase }} Hello</h3>
 			<p class="modal__text">{{ data.title }}</p>
 			<div class="modal__buttons">
-				<NuxtLink :to="`/plan/${phase}`" class="modal__button">
-					{{ $t('next') }}
+				<NuxtLink :to="`/genplan/${phase}`" class="modal__button">
+					{{ capitalize($t('next')) }}
 				</NuxtLink>
 				<a href="tel:+998 71 202 22 22" class="modal__button">
-					{{ $t('contact-us') }}
+					{{ capitalize($t('contact-us')) }}
 				</a>
 			</div>
 		</div>
@@ -43,7 +43,7 @@ defineProps({
 		transform: translateX(-50%);
 	}
 	&__text {
-		color: $clr-grey;
+		color: #545454;
 		font-weight: 500;
 		font-size: clamp(14px, 1.1vw, 16px);
 	}
@@ -52,14 +52,11 @@ defineProps({
 		font-size: clamp(18px, 1.4vw, 21px);
 	}
 	&__content {
-		padding-left: clamp(10px, 1.86vw, 28px);
+		padding-left: 10px;
 		padding-bottom: 17px;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-		@media only screen and (max-width: $bp-lg) {
-			padding-bottom: 53px;
-		}
 	}
 	&__buttons {
 		display: flex;
@@ -70,22 +67,22 @@ defineProps({
 		padding-inline: 25px;
 		transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
 		border: 1px solid transparent;
-		border-color: $clr-secondary;
+		border-color: $clr-primary;
 		font-size: 14px;
 		font-weight: 500;
 		&:first-of-type {
-			background-color: $clr-secondary;
+			background-color: $clr-primary;
 			color: #fff;
 			&:hover {
 				background-color: #fff;
-				color: $clr-secondary;
+				color: $clr-primary;
 			}
 		}
 		&:last-of-type {
 			background-color: #fff;
-			color: $clr-secondary;
+			color: $clr-primary;
 			&:hover {
-				background-color: $clr-secondary;
+				background-color: $clr-primary;
 				color: #fff;
 			}
 		}

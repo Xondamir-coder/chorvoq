@@ -5,7 +5,7 @@
 			<a @click="navigateSection('#')" class="menu__link" href="/#">
 				{{ $t('route-home') }}
 			</a>
-			<NuxtLink to="/plan" class="menu__link" @click="emits('close')">
+			<NuxtLink to="/genplan" class="menu__link" @click="emits('close')">
 				{{ $t('route-genplan') }}
 			</NuxtLink>
 			<a @click="navigateSection('#home-avenues')" href="/#home-avenues" class="menu__link">

@@ -16,7 +16,7 @@
 				</h2>
 			</div>
 			<div class="hero__buttons">
-				<NuxtLink to="/plan" class="hero__button">{{ $t('select-apartment') }}</NuxtLink>
+				<NuxtLink to="/genplan" class="hero__button">{{ $t('select-apartment') }}</NuxtLink>
 				<a href="tel:+998 71 210 44 54" class="hero__button">{{ $t('contact-us') }}</a>
 			</div>
 		</div>
