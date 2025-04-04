@@ -1,6 +1,13 @@
 <template>
 	<section class="message" id="home-message">
 		<div class="message__map">
+			<iframe
+				class="message__map-iframe"
+				src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5992.9726580383785!2d69.243385!3d41.320037!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDE5JzEyLjEiTiA2OcKwMTQnMzYuMiJF!5e0!3m2!1sen!2s!4v1743761625160!5m2!1sen!2s"
+				style="border: 0"
+				allowfullscreen=""
+				loading="lazy"
+				referrerpolicy="no-referrer-when-downgrade"></iframe>
 			<h2 class="message__title">{{ $t('home-message-title') }}</h2>
 		</div>
 		<div class="message__content">
@@ -78,11 +85,16 @@ onMounted(() => {
 	overflow: hidden;
 	&__map {
 		display: grid;
-		background-image: url('~/assets/images/location-2.avif');
-		background-size: cover;
-		background-repeat: no-repeat;
-		@media only screen and (max-width: $bp-md) {
-			aspect-ratio: 440/425;
+		&-iframe {
+			width: 100%;
+			height: 100%;
+
+			@media only screen and (max-width: $bp-md) {
+				aspect-ratio: 440/425;
+			}
+		}
+		& > * {
+			grid-area: 1/1/2/2;
 		}
 	}
 	&__button {

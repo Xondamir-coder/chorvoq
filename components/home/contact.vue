@@ -8,7 +8,13 @@
 		<div class="contact__main">
 			<VectorsStarGroupedPattern class="contact__pattern" />
 			<div class="contact__map">
-				<img src="~/assets/images/location-1.avif" alt="map" class="contact__map-image" />
+				<iframe
+					class="contact__map-iframe"
+					src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5964.778040794555!2d69.953516!3d41.625722!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMyLjYiTiA2OcKwNTcnMTIuNyJF!5e0!3m2!1sen!2s!4v1743761565439!5m2!1sen!2s"
+					style="border: 0"
+					allowfullscreen=""
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"></iframe>
 				<h2 class="contact__map-title">{{ $t('home-contact-title') }}</h2>
 			</div>
 		</div>
@@ -42,13 +48,18 @@ onMounted(() => {
 		z-index: 2;
 		position: relative;
 		display: grid;
+		aspect-ratio: 1420/640;
+
+		@media only screen and (max-width: $bp-md) {
+			aspect-ratio: 440/425;
+		}
+
+		&-iframe {
+			width: 100%;
+			height: 100%;
+		}
 		& > * {
 			grid-area: 1/1/2/2;
-		}
-		&-image {
-			@media only screen and (max-width: $bp-md) {
-				aspect-ratio: 440/425;
-			}
 		}
 		&-title {
 			background-color: #fff;
