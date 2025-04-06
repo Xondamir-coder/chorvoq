@@ -1,5 +1,11 @@
 <template>
-	<div class="tooltip" :style="{ top: `${position.y}px`, left: `${position.x}px` }">
+	<div
+		class="tooltip"
+		:style="{
+			top: `${position.y}px`,
+			left: `${position.x}px`,
+			opacity: position.x === 0 ? 0 : ''
+		}">
 		<svg
 			width="200"
 			height="200"
@@ -8,9 +14,9 @@
 			class="tooltip__arrow">
 			<polygon points="50,0 0,100 100,100" fill="white" stroke="#CAA564" stroke-width="10" />
 		</svg>
-		<div class="tooltip__item" v-for="item in items" :key="item.type">
-			<h2 class="tooltip__title">{{ item.title }}</h2>
-			<p class="tooltip__text">{{ item.type }}</p>
+		<div class="tooltip__item" v-for="item in items" :key="item">
+			<h2 class="tooltip__title">{{ item.id }}</h2>
+			<p class="tooltip__text" v-if="item.name">{{ item.name }}</p>
 		</div>
 		<div class="tooltip__pattern-container">
 			<VectorsStarPattern class="tooltip__pattern" />
@@ -19,6 +25,8 @@
 </template>
 
 <script setup>
+const { t } = useI18n();
+
 // Create a reactive object to store the cursor position
 const position = ref({ x: 0, y: 0 });
 
@@ -27,6 +35,15 @@ const updatePosition = e => {
 	// Offset added so tooltip does not obscure the cursor
 	position.value = { x: e.clientX + 10, y: e.clientY + 10 };
 };
+const items = computed(() =>
+	[
+		props.data.phaseId && { id: props.data.phaseId, name: t('phase') },
+		props.data.buildingId && { id: props.data.buildingId, name: t('house') },
+		props.data.blockId && { id: props.data.blockId, name: t('block') },
+		props.data.floorId && { id: props.data.floorId, name: t('floor') },
+		props.data.commercial?.name && { id: props.data.commercial?.name }
+	].filter(Boolean)
+);
 
 onMounted(() => {
 	window.addEventListener('mousemove', updatePosition);
@@ -36,8 +53,8 @@ onBeforeUnmount(() => {
 	window.removeEventListener('mousemove', updatePosition);
 });
 
-defineProps({
-	items: Array
+const props = defineProps({
+	data: Object
 });
 </script>
 
@@ -60,6 +77,7 @@ defineProps({
 		&-container {
 			overflow: hidden;
 			width: 70%;
+			max-width: 70px;
 			position: absolute;
 			right: 0;
 			bottom: 0;

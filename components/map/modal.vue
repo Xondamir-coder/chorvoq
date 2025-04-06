@@ -1,15 +1,15 @@
 <template>
 	<div class="modal">
 		<div class="modal__image-container">
-			<img :src="data.img" :alt="data.title" class="modal__image" />
+			<img :src="data.commercial.img" :alt="data.commercial.name" class="modal__image" />
 		</div>
 		<div class="modal__content">
-			<h3 class="modal__title">{{ phase }} Hello</h3>
-			<p class="modal__text">{{ data.title }}</p>
+			<h3 class="modal__title">{{ data.commercial.name }}</h3>
+			<p class="modal__text">{{ data.commercial.description }}</p>
 			<div class="modal__buttons">
-				<NuxtLink :to="`/genplan/${phase}`" class="modal__button">
+				<button class="modal__button" @click="emits('next')">
 					{{ capitalize($t('next')) }}
-				</NuxtLink>
+				</button>
 				<a href="tel:+998 71 202 22 22" class="modal__button">
 					{{ capitalize($t('contact-us')) }}
 				</a>
@@ -20,9 +20,9 @@
 
 <script setup>
 defineProps({
-	data: Object,
-	phase: String
+	data: Object
 });
+const emits = defineEmits(['next']);
 </script>
 
 <style lang="scss" scoped>
@@ -70,7 +70,7 @@ defineProps({
 		border-color: $clr-primary;
 		font-size: 14px;
 		font-weight: 500;
-		&:first-of-type {
+		&:first-child {
 			background-color: $clr-primary;
 			color: #fff;
 			&:hover {
@@ -78,7 +78,7 @@ defineProps({
 				color: $clr-primary;
 			}
 		}
-		&:last-of-type {
+		&:last-child {
 			background-color: #fff;
 			color: $clr-primary;
 			&:hover {
