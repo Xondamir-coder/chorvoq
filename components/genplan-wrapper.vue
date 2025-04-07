@@ -1,19 +1,28 @@
 <template>
 	<main class="plan">
 		<div class="plan__main" ref="mainRef">
-			<img :src="backgroundImage" alt="genplan banner" class="plan__image" />
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 1920 1080"
-				preserveAspectRatio="xMidYMid slice">
-				<NuxtLink
-					v-for="path in paths"
-					:key="path.id"
-					@mouseover="pathInfo = path"
-					@click="navigatePath(path)">
-					<path :d="path.path"></path>
-				</NuxtLink>
-			</svg>
+			<Transition name="fade">
+				<img
+					:src="backgroundImage"
+					alt="genplan banner"
+					class="plan__image"
+					:key="backgroundImage" />
+			</Transition>
+			<Transition name="fade">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 1920 1080"
+					preserveAspectRatio="xMidYMid slice"
+					:key="backgroundImage">
+					<NuxtLink
+						v-for="path in paths"
+						:key="path.id"
+						@mouseover="pathInfo = path"
+						@click="navigatePath(path)">
+						<path :d="path.path"></path>
+					</NuxtLink>
+				</svg>
+			</Transition>
 		</div>
 		<div class="plan__bottom">
 			<a href="tel:+998 71 202 22 22" class="plan__tel">
@@ -25,11 +34,11 @@
 					<p class="plan__tel-text">{{ $t('order-call') }}</p>
 				</div>
 			</a>
-			<div class="plan__buttons" v-if="$route.name.includes('buildings')">
-				<button class="plan__button">
+			<div class="plan__buttons" v-if="$route.name === 'buildings-building_id'">
+				<button class="plan__button" @click="emits('changeFloor', 'prev')">
 					<IconsShortArrowLeft class="plan__arrow" />
 				</button>
-				<button class="plan__button">
+				<button class="plan__button" @click="emits('changeFloor', 'next')">
 					<IconsShortArrowRight class="plan__arrow" />
 				</button>
 			</div>
@@ -83,18 +92,21 @@ const handleMouseMove = e => {
 	});
 };
 const navigatePath = path => {
-	// // If its commercial path
+	// If its commercial path
 	if (path.commercial && Object.keys(path.commercial).length !== 0) {
 		showModal.value = true;
 		commercialPath.value = path;
 	} else {
+		// Get id
 		const id = path.phaseId || path.buildingId || path.blockId;
+
+		// Update local storage
+		const key = `${props.pathname.split('/')[0]}Id`;
+		localStorage.setItem(key, id);
+
+		// Push to route
 		const cleanSegment = str => str.replace(/^\/+|\/+$/g, '');
-		const segments = [
-			cleanSegment(route.path),
-			cleanSegment(props.pathname.replace('placeholder', id))
-		];
-		const pathname = '/' + segments.join('/');
+		const pathname = `/${cleanSegment(props.pathname.replace('placeholder', id))}`;
 		router.push(pathname);
 	}
 };
@@ -114,6 +126,7 @@ const showNextCommercial = () => {
 	if (!newCommercial) return;
 	commercialPath.value = newCommercial;
 };
+const emits = defineEmits(['changeFloor']);
 
 onMounted(() => {
 	mainRef.value.addEventListener('click', handleGlobalClick);
@@ -296,6 +309,18 @@ onUnmounted(() => {
 		width: 16px;
 		fill: $clr-red;
 		transition: fill 0.3s;
+	}
+}
+
+.fade {
+	&-enter-active,
+	&-leave-active,
+	&-move {
+		transition: opacity 0.5s ease;
+	}
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
 	}
 }
 </style>
