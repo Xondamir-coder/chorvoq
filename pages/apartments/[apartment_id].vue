@@ -81,7 +81,7 @@ const route = useRoute();
 
 const images = [img1, img2, img3, img4, img5, img6, img7];
 
-// Floor stuff
+// All the floot paths
 const floorPaths1 = [
 	{
 		path: 'M 4.124 243.794 L 5.37 540.289 L 311.831 539.043 L 308.094 245.04 L 4.124 243.794 Z',
