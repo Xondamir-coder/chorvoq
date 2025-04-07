@@ -359,6 +359,7 @@ onMounted(() => {
 	&__main {
 		display: flex;
 		flex-direction: column;
+		gap: min(2vw, 30px);
 	}
 	&__button {
 		margin-top: auto;
