@@ -1,9 +1,12 @@
 <template>
-	<header class="header">
+	<header class="header" :class="{ 'header--colorful': isColorful }">
 		<div class="header__vectors">
-			<VectorsLogo class="header__vector" />
-			<VectorsNbu class="header__vector" />
-			<VectorsDcity class="header__vector" />
+			<VectorsLogo class="header__vector" v-if="!isColorful" />
+			<VectorsLogoColored class="header__vector" v-else />
+			<VectorsNbu class="header__vector" v-if="!isColorful" />
+			<VectorsNbuColored class="header__vector" v-else />
+			<VectorsDcity class="header__vector" v-if="!isColorful" />
+			<VectorsDcityColored class="header__vector" v-else />
 		</div>
 		<button class="header__hamburger" @click="toggleMenu" :class="{ active: isMenuOpen }">
 			<IconsHamburger :class="{ active: !isMenuOpen }" />
@@ -52,6 +55,9 @@ const route = useRoute();
 const router = useRouter();
 
 const isMenuOpen = ref(false);
+const isColorful = computed(
+	() => route.name.includes('floors') || route.name.includes('apartments')
+);
 
 const toggleMenu = () => {
 	isMenuOpen.value = !isMenuOpen.value;
@@ -149,6 +155,11 @@ const navigateSection = to => {
 	align-items: center;
 	color: #fff;
 	font-size: 0.95rem;
+	&--colorful {
+		background-color: #f3f0ea;
+		color: #000;
+		position: static;
+	}
 	&__language {
 		display: flex;
 		gap: 4px;

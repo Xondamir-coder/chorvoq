@@ -40,7 +40,7 @@ const route = useRoute();
 const router = useRouter();
 const { $lenis } = useNuxtApp();
 
-const isPlan = computed(() => route.name.includes('genplan'));
+const isPlan = computed(() => route.name.includes('_id') || route.name.includes('genplan'));
 
 const navigateSection = to => {
 	if (route.name !== 'index') router.push({ path: '/', hash: to === '#' ? '' : to });

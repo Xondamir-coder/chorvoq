@@ -1,5 +1,5 @@
 <template>
-	<GenplanWrapper :background-image="bgImage" :paths="paths" pathname="phases/placeholder" />
+	<GenplanWrapper :background-image="bgImage" :paths="paths" />
 </template>
 
 <script setup>

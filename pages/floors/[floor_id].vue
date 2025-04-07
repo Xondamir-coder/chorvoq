@@ -1,10 +1,313 @@
 <template>
-	{{ $route }}
+	<main class="floor">
+		<div class="floor__container">
+			<nav class="floor__buttons">
+				<NuxtLink
+					class="floor__button"
+					v-for="number in [...numbers].reverse()"
+					:key="number.floor"
+					@click="navigateToFloor(number)"
+					:class="{ active: number.floor == $route.params.floor_id }">
+					<div class="floor__button-num">
+						{{ number.floor }}
+					</div>
+					<div class="floor__button-content">
+						<span class="floor__button-floor">{{ $t('floor') }}</span>
+						<span class="floor__button-block">
+							{{ number.blockId }} {{ $t('block').toLowerCase() }}
+						</span>
+					</div>
+				</NuxtLink>
+			</nav>
+			<div class="floor__wrapper">
+				<img :src="currentImg" alt="floor plan" class="floor__image" />
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1765 1070">
+					<NuxtLink
+						v-for="path in currentPaths"
+						:key="path.apartmentId"
+						:to="`/apartments/${path.apartmentId}`">
+						<path :d="path.path" class="floor__path"></path>
+					</NuxtLink>
+				</svg>
+			</div>
+		</div>
+		<button class="floor__cta">
+			{{ $t('print-to-pdf') }}
+		</button>
+		<div class="floor__bottom">
+			<a href="tel:+998 71 202 22 22" class="floor__tel">
+				<div class="floor__tel-circle">
+					<IconsPhone class="floor__tel-icon" />
+				</div>
+				<div class="floor__tel-data">
+					<h3 class="floor__tel-title">71 202 22 22</h3>
+					<p class="floor__tel-text">{{ $t('order-call') }}</p>
+				</div>
+			</a>
+			<div class="floor__social">
+				<a target="_blank" href="https://telegram.org" class="floor__social-item">
+					<IconsTelegram class="floor__social-icon" />
+				</a>
+				<a target="_blank" href="https://facebook.com" class="floor__social-item">
+					<IconsFacebookCircular class="floor__social-icon" />
+				</a>
+				<a target="_blank" href="https://instagram.com" class="floor__social-item">
+					<IconsInstagram class="floor__social-icon" />
+				</a>
+			</div>
+		</div>
+	</main>
 </template>
 
 <script setup>
+import img1 from '~/assets/images/apartments/apartment-1.webp';
+import img2 from '~/assets/images/apartments/apartment-2.webp';
+import img3 from '~/assets/images/apartments/apartment-3.webp';
+import img4 from '~/assets/images/apartments/apartment-4.webp';
+import img5 from '~/assets/images/apartments/apartment-5.webp';
+import img6 from '~/assets/images/apartments/apartment-6.webp';
+import img7 from '~/assets/images/apartments/apartment-7.webp';
+
 const { t } = useI18n();
+const router = useRouter();
+const route = useRoute();
+
+const numbers = [
+	{
+		floor: 1,
+		blockId: 'E1'
+	},
+	{
+		floor: 2,
+		blockId: 'E1'
+	},
+	{
+		floor: 3,
+		blockId: 'E1'
+	},
+	{
+		floor: 4,
+		blockId: 'E1'
+	},
+	{
+		floor: 5,
+		blockId: 'E1'
+	},
+	{
+		floor: 6,
+		blockId: 'E1'
+	},
+	{
+		floor: 7,
+		blockId: 'E1'
+	}
+];
+
+// Floor stuff
+const floor1Paths = [
+	{
+		path: 'M 667.286 185.061 L 666.076 518.834 L 1010.733 523.671 L 1011.942 188.689 L 667.286 185.061 Z',
+		apartmentId: '19'
+	},
+	{
+		path: 'M 311.743 185.061 L 310.533 518.834 L 655.193 523.671 L 656.403 188.689 L 311.743 185.061 Z',
+		apartmentId: '15'
+	},
+	{
+		path: 'M 12.849 239.524 L 11.834 519.613 L 301.057 523.672 L 302.071 242.568 L 12.849 239.524 Z',
+		apartmentId: '12'
+	},
+	{
+		path: 'M 11.107 567.15 L 9.415 886.277 L 491.453 890.902 L 493.143 570.619 L 11.107 567.15 Z',
+		apartmentId: '11'
+	}
+];
+const images = [img1, img2, img3, img4, img5, img6, img7];
+const paths = Array(7).fill(floor1Paths);
+
+const currentImg = computed(() => images[+route.params.floor_id - 1]);
+const currentPaths = computed(() => paths[+route.params.floor_id - 1]);
+
+const navigateToFloor = num => {
+	localStorage.setItem('floorId', num.floor);
+	localStorage.setItem('blockId', num.blockId);
+	router.push(`/floors/${num.floor}`);
+};
+
 useHead({
-	title: t('floors')
+	title: t('apartments')
 });
 </script>
+
+<style scoped lang="scss">
+@keyframes slide-from-bottom {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes animate-border-color {
+	from {
+		border: 1px solid transparent;
+	}
+	to {
+		border: 1px solid $clr-secondary-darkest;
+	}
+}
+.floor {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background-image: url('~/assets/images/blur.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	gap: 18px;
+	padding-inline: $layout-spacing;
+	justify-content: center;
+	&__path {
+		fill: rgba(255, 255, 255, 0.2);
+		transition: fill 0.3s;
+		&:hover {
+			fill: rgba($clr-primary, 0.7);
+		}
+	}
+	&__wrapper {
+		align-self: center;
+		width: 50%;
+		margin-inline: auto;
+		padding-right: 7%;
+		display: grid;
+		& > * {
+			grid-area: 1/1/2/2;
+		}
+	}
+	&__cta {
+		align-self: center;
+		background-color: $clr-primary;
+		color: #fff;
+		font-weight: 600;
+		text-transform: uppercase;
+		padding-block: 17px;
+		padding-inline: 35px;
+		font-size: 0.7rem;
+		letter-spacing: 0.3px;
+		transition: background-color 0.3s, color 0.3s;
+		&:hover {
+			background-color: #fff;
+			color: $clr-primary;
+		}
+	}
+	&__bottom {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__social {
+		align-self: center;
+		display: flex;
+		gap: 6px;
+		pointer-events: all;
+		&-item {
+			@include flex-center;
+			background-color: $clr-primary;
+			border-radius: 50%;
+			width: 24px;
+			aspect-ratio: 1;
+			transition: background-color 0.3s;
+			&:hover {
+				background-color: #fff;
+				.floor__social-icon {
+					fill: $clr-primary;
+				}
+			}
+		}
+		&-icon {
+			width: 60%;
+			fill: #fff;
+			transition: fill 0.3s;
+		}
+	}
+	&__tel {
+		align-self: flex-start;
+		gap: 11px;
+		color: $clr-primary;
+		display: grid;
+		grid-template-columns: 1fr max-content;
+		&:hover {
+			.floor__tel-circle {
+				background-color: #fff;
+			}
+			.floor__tel-icon {
+				fill: $clr-primary;
+			}
+		}
+		&-circle {
+			background-color: $clr-primary;
+			border-radius: 50%;
+			transition: background-color 0.3s;
+			aspect-ratio: 1;
+			@include flex-center;
+		}
+		&-icon {
+			width: 16px;
+			fill: #fff;
+			transition: fill 0.3s;
+		}
+		&-text {
+			font-size: 14px;
+			font-weight: 600;
+		}
+	}
+	&__container {
+		display: flex;
+	}
+	&__buttons {
+		display: flex;
+		gap: 20px;
+		flex-direction: column;
+	}
+	&__button {
+		cursor: pointer;
+		color: $clr-secondary-darkest;
+		display: flex;
+		gap: 9px;
+		&.active {
+			.floor__button-content {
+				animation: slide-from-bottom 0.3s forwards;
+			}
+			.floor__button-num {
+				animation: animate-border-color 0.3s forwards;
+			}
+		}
+		& > * {
+			font-weight: 700;
+		}
+		&-floor {
+			text-transform: lowercase;
+		}
+		&-block {
+			color: #7b7b99;
+		}
+		&-content {
+			opacity: 0;
+			align-self: flex-end;
+			display: flex;
+			flex-direction: column;
+			font-size: min(0.9vw, 14px);
+			line-height: 1.1;
+		}
+		&-num {
+			@include flex-center;
+			width: min(2.5vw, 40px);
+			aspect-ratio: 1;
+			border-radius: 50%;
+			border: 1px solid transparent;
+			box-shadow: 0px 1px 10px 0px rgba(255, 255, 255, 0.33) inset;
+			font-weight: 700;
+		}
+	}
+}
+</style>

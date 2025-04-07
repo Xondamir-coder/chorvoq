@@ -34,7 +34,7 @@
 					<p class="plan__tel-text">{{ $t('order-call') }}</p>
 				</div>
 			</a>
-			<div class="plan__buttons" v-if="$route.name === 'buildings-building_id'">
+			<div class="plan__buttons" v-if="$route.name.includes('blocks')">
 				<button class="plan__button" @click="emits('changeFloor', 'prev')">
 					<IconsShortArrowLeft class="plan__arrow" />
 				</button>
@@ -97,16 +97,19 @@ const navigatePath = path => {
 		showModal.value = true;
 		commercialPath.value = path;
 	} else {
-		// Get id
-		const id = path.phaseId || path.buildingId || path.blockId;
+		let pathname;
 
-		// Update local storage
-		const key = `${props.pathname.split('/')[0]}Id`;
-		localStorage.setItem(key, id);
-
-		// Push to route
-		const cleanSegment = str => str.replace(/^\/+|\/+$/g, '');
-		const pathname = `/${cleanSegment(props.pathname.replace('placeholder', id))}`;
+		// Update storage & get ID
+		if (route.name.includes('genplan')) {
+			localStorage.setItem('phaseId', path.phaseId);
+			pathname = `/phases/${path.phaseId}`;
+		} else if (route.name.includes('phases')) {
+			localStorage.setItem('blockId', path.blockId);
+			pathname = `/blocks/${path.blockId}`;
+		} else if (route.name.includes('blocks')) {
+			localStorage.setItem('floorId', path.floorId);
+			pathname = `/floors/${path.floorId}`;
+		}
 		router.push(pathname);
 	}
 };

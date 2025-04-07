@@ -7,7 +7,7 @@
 		</div>
 		<div class="hero__content">
 			<div class="hero__content-texts">
-				<h1 class="hero__title">{{ $t('sitename') }}</h1>
+				<h1 class="hero__title">Chorvoq Darvozasi</h1>
 				<h2 class="hero__subtitle">
 					{{ $t('home-hero-subtitle-1') }} <br />
 					<span class="big">
