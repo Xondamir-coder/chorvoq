@@ -4,17 +4,17 @@
 			<nav class="floor__buttons">
 				<NuxtLink
 					class="floor__button"
-					v-for="number in [...numbers].reverse()"
-					:key="number.floor"
-					@click="navigateToFloor(number)"
-					:class="{ active: number.floor == $route.params.floor_id }">
+					v-for="floor in floors"
+					:key="floor"
+					@click="navigateToFloor(floor)"
+					:class="{ active: floor == $route.params.floor_id }">
 					<div class="floor__button-num">
-						{{ number.floor }}
+						{{ floor }}
 					</div>
 					<div class="floor__button-content">
 						<span class="floor__button-floor">{{ $t('floor') }}</span>
 						<span class="floor__button-block">
-							{{ number.blockId }} {{ $t('block').toLowerCase() }}
+							{{ blockId }} {{ $t('block').toLowerCase() }}
 						</span>
 					</div>
 				</NuxtLink>
@@ -72,36 +72,12 @@ const { t } = useI18n();
 const router = useRouter();
 const route = useRoute();
 
-const numbers = [
-	{
-		floor: 1,
-		blockId: 'E1'
-	},
-	{
-		floor: 2,
-		blockId: 'E1'
-	},
-	{
-		floor: 3,
-		blockId: 'E1'
-	},
-	{
-		floor: 4,
-		blockId: 'E1'
-	},
-	{
-		floor: 5,
-		blockId: 'E1'
-	},
-	{
-		floor: 6,
-		blockId: 'E1'
-	},
-	{
-		floor: 7,
-		blockId: 'E1'
-	}
-];
+const blockId = ref('');
+const floors = [7, 6, 5, 4, 3, 2, 1];
+
+onMounted(() => {
+	blockId.value = localStorage.getItem('blockId');
+});
 
 // Floor stuff
 const floor1Paths = [
@@ -128,10 +104,9 @@ const paths = Array(7).fill(floor1Paths);
 const currentImg = computed(() => images[+route.params.floor_id - 1]);
 const currentPaths = computed(() => paths[+route.params.floor_id - 1]);
 
-const navigateToFloor = num => {
-	localStorage.setItem('floorId', num.floor);
-	localStorage.setItem('blockId', num.blockId);
-	router.push(`/floors/${num.floor}`);
+const navigateToFloor = floorNum => {
+	localStorage.setItem('floorId', floorNum);
+	router.push(`/floors/${floorNum}`);
 };
 
 useHead({

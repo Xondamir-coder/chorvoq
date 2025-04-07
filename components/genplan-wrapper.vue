@@ -55,6 +55,8 @@
 			</div>
 		</div>
 	</main>
+	<!-- <div style="color: purple">{{ pathInfo }}</div> -->
+
 	<MapTooltip :data="pathInfo" class="map-tooltip" />
 	<Transition name="slide-in">
 		<MapModal :data="commercialPath" v-if="showModal" @next="showNextCommercial" />
@@ -108,6 +110,7 @@ const navigatePath = path => {
 			pathname = `/blocks/${path.blockId}`;
 		} else if (route.name.includes('blocks')) {
 			localStorage.setItem('floorId', path.floorId);
+			localStorage.setItem('blockId', path.blockId);
 			pathname = `/floors/${path.floorId}`;
 		}
 		router.push(pathname);
