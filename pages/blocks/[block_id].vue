@@ -9,7 +9,6 @@
 import img1 from '~/assets/images/floors.avif';
 import img2 from '~/assets/images/floors-2.avif';
 import img3 from '~/assets/images/floors-3.avif';
-import img from '~/assets/images/hotel-close.avif';
 
 const { t } = useI18n();
 
@@ -93,14 +92,14 @@ const firstFloorPaths = [
 	// 	blockId: 'E3',
 	// 	floorId: '3',
 	// 	path: 'M 223 577.339 L 546 586.076 L 546 615.996 L 462 620.996 L 462 665.496 L 59 626.996 L 59 601.996 L 223 597.297 L 223 577.339 Z'
-	// }
+	// },
 
 	// // E4
 	// {
 	// 	blockId: 'E4',
 	// 	floorId: '1',
 	// 	path: 'M 164 610.5 L 164 638 L 164 640 L 52.5 629 L 52.5 624.5 L 59.5 624.5 L 59.5 602 L 221.502 596 L 223.002 569.5 L 192.5 568 L 192.5 560.5 L 204 560.5 L 204 518.5 L 195.5 518.5 L 195.5 469.5 L 190.5 469.5 L 190.5 463.5 L 200 463.5 L 200 412.5 L 221.502 412.5 L 221.502 401 L 263.002 398 L 263.002 458.5 C 256.335 458.667 242.602 459.1 241.002 459.5 C 239.402 459.9 240.335 537.333 241.002 576 L 261.502 576 L 261.502 606 L 164 610.5 Z'
-	// },
+	// }
 
 	// Commercial
 	// {
@@ -130,7 +129,7 @@ const secondFloorPaths = [
 		floorId: '1'
 	}
 
-	// E2
+	// // E2
 	// { path: 'M976.5 512.5V434.5L478.5 422.5V512.5H976.5Z', blockId: 'E2', floorId: '7' },
 	// { path: 'M976.5 569V515.5L478.5 513V569H976.5Z', blockId: 'E2', floorId: '6' },
 	// { path: 'M976.5 624V570.5H478.5V626.5L976.5 624Z', blockId: 'E2', floorId: '5' },

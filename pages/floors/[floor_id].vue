@@ -123,6 +123,11 @@ useHead({
 	padding-inline: $layout-spacing;
 	justify-content: center;
 	padding-block: 40px;
+	&__image {
+		aspect-ratio: 1.6;
+		align-self: center;
+		object-fit: contain;
+	}
 	&__center {
 		display: flex;
 		flex-direction: column;
