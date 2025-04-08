@@ -42,6 +42,18 @@ import apartmentImg33 from '~/assets/images/apartment/33.png';
 import apartmentImg34 from '~/assets/images/apartment/34.png';
 import apartmentImg35 from '~/assets/images/apartment/35.png';
 import apartmentImg36 from '~/assets/images/apartment/36.png';
+import apartmentImg37 from '~/assets/images/apartment/37.png';
+import apartmentImg38 from '~/assets/images/apartment/38.png';
+import apartmentImg39 from '~/assets/images/apartment/39.png';
+import apartmentImg40 from '~/assets/images/apartment/40.png';
+import apartmentImg41 from '~/assets/images/apartment/41.png';
+import apartmentImg42 from '~/assets/images/apartment/42.png';
+import apartmentImg43 from '~/assets/images/apartment/43.png';
+import apartmentImg44 from '~/assets/images/apartment/44.png';
+import apartmentImg45 from '~/assets/images/apartment/45.png';
+import apartmentImg46 from '~/assets/images/apartment/46.png';
+import apartmentImg47 from '~/assets/images/apartment/47.png';
+import apartmentImg48 from '~/assets/images/apartment/48.png';
 
 // {apartment_id} detailed apartment data (E1)
 export const apartments = [
@@ -1030,6 +1042,993 @@ export const apartments = [
 				key_en: 'Balcony',
 				key_uz: 'Balkon',
 				val: '3,83'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '26',
+		blockId: 'E1',
+		floorId: '4',
+		img: apartmentImg26,
+		details: [
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '22,31'
+			},
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '2,17'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '10,67'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,72'
+			},
+			{
+				key_ru: 'Терасса',
+				key_en: 'Terrace',
+				key_uz: 'Terassa',
+				val: '49,61'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,87'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '27',
+		blockId: 'E1',
+		floorId: '4',
+		img: apartmentImg27,
+		details: [
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '26,31'
+			},
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '3,22'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '16,74'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '6,72'
+			},
+			{
+				key_ru: 'Терасса',
+				key_en: 'Terrace',
+				key_uz: 'Terassa',
+				val: '44,88'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,54'
+			}
+		]
+	},
+
+	// 5 - Floor
+	{
+		phaseId: '1',
+		apartmentId: '28',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg28,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '2,05'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '23,48'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '11,77'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,72'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '1,13'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '4,40'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '29',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg29,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '2,09'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '18,51'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '10,77'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,88'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,74'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '4,40'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '30',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg30,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '3,09'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '17,14'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '10,93'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,86'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,76'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '4,42'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '31',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg31,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '19,21'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,61'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,95'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,92'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '32',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg32,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '19,78'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,56'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,86'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,48'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '33',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg33,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '18,19'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,46'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,86'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,48'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '34',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg34,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '19,98'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,83'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,86'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,71'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '35',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg35,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '2,17'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '22,31'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '10,76'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '6,72'
+			},
+			{
+				key_ru: 'Прач.',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,87'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '9,86'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '36',
+		blockId: 'E1',
+		floorId: '5',
+		img: apartmentImg36,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '3,22'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '26,31'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '16,74'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '6,72'
+			},
+			{
+				key_ru: 'Прач.',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,54'
+			}
+		]
+	},
+
+	// 6 - Floor
+	{
+		phaseId: '1',
+		apartmentId: '37',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg37,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '2,05'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '23,48'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '11,77'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,72'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '1,13'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '4,40'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '38',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg38,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '2,09'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '18,51'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '10,77'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,88'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,74'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '4,40'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '39',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg39,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '3,09'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '17,14'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '10,93'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,86'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,76'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '4,42'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '40',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg40,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '19,21'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,61'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,95'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,92'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '41',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg41,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '19,78'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,56'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,86'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,48'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '42',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg42,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '18,19'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,46'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,86'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,48'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '43',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg43,
+		details: [
+			{
+				key_ru: 'Жилая площадь',
+				key_en: 'Living room',
+				key_uz: 'Mehmonxona',
+				val: '19,98'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,83'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '3,71'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '44',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg44,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '2,17'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '22,31'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '10,67'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,72'
+			},
+			{
+				key_ru: 'Прач.',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,87'
+			},
+			{
+				key_ru: 'Балкон',
+				key_en: 'Balcony',
+				key_uz: 'Balkon',
+				val: '9,86'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '45',
+		blockId: 'E1',
+		floorId: '6',
+		img: apartmentImg45,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '3,22'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '26,01'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '16,67'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '6,72'
+			},
+			{
+				key_ru: 'Прач.',
+				key_en: 'Loundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,54'
+			}
+		]
+	},
+
+	// 7 - Floor
+	{
+		phaseId: '1',
+		apartmentId: '46',
+		blockId: 'E1',
+		floorId: '7',
+		img: apartmentImg46,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '7,74'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '35,29'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '12,06'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '5,09'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '4,95'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '0,90'
+			},
+			{
+				key_ru: 'Детская',
+				key_en: 'Childrens room',
+				key_uz: 'Bolalar xonasi',
+				val: '9,60'
+			},
+			{
+				key_ru: 'Детская',
+				key_en: 'Childrens room',
+				key_uz: 'Bolalar xonasi',
+				val: '10,13'
+			},
+			{
+				key_ru: 'Терасса',
+				key_en: 'Terrace',
+				key_uz: 'Terassa',
+				val: '11,33'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '47',
+		blockId: 'E1',
+		floorId: '7',
+		img: apartmentImg47,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '13,60'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '35,31'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '15,97'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,83'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,71'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '1,04'
+			},
+			{
+				key_ru: 'Детская',
+				key_en: 'Childrens room',
+				key_uz: 'Bolalar xonasi',
+				val: '11,43'
+			},
+			{
+				key_ru: 'Детская',
+				key_en: 'Childrens room',
+				key_uz: 'Bolalar xonasi',
+				val: '10,95'
+			},
+			{
+				key_ru: 'Терасса',
+				key_en: 'Terrace',
+				key_uz: 'Terassa',
+				val: '30,79'
+			}
+		]
+	},
+	{
+		phaseId: '1',
+		apartmentId: '48',
+		blockId: 'E1',
+		floorId: '7',
+		img: apartmentImg48,
+		details: [
+			{
+				key_ru: 'Холл',
+				key_en: 'Hall',
+				key_uz: 'Dahliz',
+				val: '9,73'
+			},
+			{
+				key_ru: 'Кухня + Зал',
+				key_en: 'Kitchen + Living room',
+				key_uz: 'Oshxona + Mehmonxona',
+				val: '35,71'
+			},
+			{
+				key_ru: 'Спальня',
+				key_en: 'Bedroom',
+				key_uz: 'Yotoqxona',
+				val: '17,32'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '3,85'
+			},
+			{
+				key_ru: 'C/У',
+				key_en: 'Bathroom',
+				key_uz: 'Hammom',
+				val: '5,72'
+			},
+			{
+				key_ru: 'Прач',
+				key_en: 'Laundry',
+				key_uz: 'Kir yuvish xonasi',
+				val: '1,96'
+			},
+			{
+				key_ru: 'Детская',
+				key_en: 'Childrens room',
+				key_uz: 'Bolalar xonasi',
+				val: '15,36'
+			},
+			{
+				key_ru: 'Детская',
+				key_en: 'Childrens room',
+				key_uz: 'Bolalar xonasi',
+				val: '23,15'
+			},
+			{
+				key_ru: 'Терасса',
+				key_en: 'Terrace',
+				key_uz: 'Terassa',
+				val: '23,31'
+			},
+			{
+				key_ru: 'Терасса',
+				key_en: 'Terrace',
+				key_uz: 'Terassa',
+				val: '8,85'
 			}
 		]
 	}

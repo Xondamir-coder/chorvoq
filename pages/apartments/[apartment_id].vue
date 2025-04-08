@@ -27,7 +27,7 @@
 					</span>
 					<h2 class="apartment__title">
 						{{ $t('apartment') }} № {{ apartmentId.padStart(2, '0') }}
-						{{ $t('with-area') }} {{ totalArea ? Math.floor(totalArea) : 0 }}
+						{{ $t('with-area') }} {{ Math.round(totalArea) }}
 						{{ $t('m-squared') }}
 					</h2>
 				</div>
@@ -87,10 +87,24 @@ const floorId = ref();
 const blockId = ref();
 const phaseId = ref();
 
+// Current apartment data
+const apartmentId = computed(() => route.params.apartment_id);
+const currentApartment = computed(() => apartments.find(a => a.apartmentId == apartmentId.value));
+const totalArea = computed(() =>
+	currentApartment.value?.details.reduce((sum, detail) => {
+		if (detail.key_en == 'Terrace') return sum;
+		const result = sum + parseFloat(detail.val.replace(',', '.'));
+		return result;
+	}, 0)
+);
+const currentApartmentDetails = computed(() => currentApartment.value?.details);
+const currentApartmentImg = computed(() => currentApartment.value?.img);
+
+// Assigning IDs
 if (import.meta.client) {
-	phaseId.value = localStorage.getItem('phaseId') || '';
-	blockId.value = localStorage.getItem('blockId') || '';
-	floorId.value = localStorage.getItem('floorId') || '';
+	phaseId.value = currentApartment.value.phaseId;
+	blockId.value = currentApartment.value.blockId;
+	floorId.value = currentApartment.value.floorId;
 }
 
 // Apartments sketch data
@@ -101,15 +115,6 @@ const currentApartments = computed(() =>
 );
 const currentApartmentsImg = computed(() => currentApartments.value?.img);
 const currentApartmentsPaths = computed(() => currentApartments.value?.paths?.paths);
-
-// Current apartment data
-const apartmentId = computed(() => route.params.apartment_id);
-const currentApartment = computed(() => apartments.find(a => a.apartmentId == apartmentId.value));
-const totalArea = computed(() =>
-	currentApartment.value?.details.reduce((sum, detail) => sum + parseFloat(detail.val), 0)
-);
-const currentApartmentDetails = computed(() => currentApartment.value?.details);
-const currentApartmentImg = computed(() => currentApartment.value?.img);
 
 useHead({
 	title: `${t('apartment')} Nº${route.params.apartment_id}`
