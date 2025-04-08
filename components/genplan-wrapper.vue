@@ -82,7 +82,7 @@ const mainRef = ref();
 
 const st = 32;
 const handleMouseMove = e => {
-	const ySt = e.clientY - 120 < 0 ? 100 : st;
+	const ySt = e.clientY - window.innerHeight / 3 < 0 ? 100 : st;
 
 	const x = (e.clientX / window.innerWidth) * (2 * st) - st;
 	const y = (e.clientY / window.innerHeight) * (2 * st) - ySt;
