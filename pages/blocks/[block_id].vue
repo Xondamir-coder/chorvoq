@@ -101,17 +101,17 @@ const firstFloorPaths = [
 		blockId: 'E3',
 		floorId: '3',
 		path: 'M 223 577.339 L 546 586.076 L 546 615.996 L 462 620.996 L 462 665.496 L 59 626.996 L 59 601.996 L 223 597.297 L 223 577.339 Z'
-	},
+	}
 
 	// Commercial
-	{
-		path: 'M 63.5 629.996 L 1262.5 758.496 L 1569 715.496 L 1569 877.277 L 1256 952.996 L 63.5 718.996 L 63.5 629.996 Z',
-		commercial: {
-			name: t('shop'),
-			description: t('shop-desc'),
-			img
-		}
-	}
+	// {
+	// 	path: 'M 63.5 629.996 L 1262.5 758.496 L 1569 715.496 L 1569 877.277 L 1256 952.996 L 63.5 718.996 L 63.5 629.996 Z',
+	// 	commercial: {
+	// 		name: t('shop'),
+	// 		description: t('shop-desc'),
+	// 		img
+	// 	}
+	// }
 ];
 const secondFloorPaths = [
 	// E1
@@ -284,17 +284,17 @@ const thirdFloorPaths = [
 		path: 'M 1737 657.5 L 1737 632.5 L 1649 626.5 L 1649 596.5 L 1666.5 596.5 L 1666.5 590 L 1716 588.5 L 1716 614 L 1869.5 623 L 1870 644 L 1737 657.5 Z',
 		blockId: 'E1',
 		floorId: '4'
-	},
+	}
 
 	// Commercial
-	{
-		path: 'M274.5 729V874L482 947L1872 739V645L482 780L274.5 729Z',
-		commercial: {
-			name: t('shop'),
-			description: t('shop-desc'),
-			img
-		}
-	}
+	// {
+	// 	path: 'M274.5 729V874L482 947L1872 739V645L482 780L274.5 729Z',
+	// 	commercial: {
+	// 		name: t('shop'),
+	// 		description: t('shop-desc'),
+	// 		img
+	// 	}
+	// }
 ];
 
 const floorPaths = [firstFloorPaths, secondFloorPaths, thirdFloorPaths];

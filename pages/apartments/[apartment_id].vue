@@ -1,5 +1,5 @@
 <template>
-	<main class="apartment">
+	<main class="apartment" :id="`apartment-${apartmentId}`">
 		<div class="apartment__container">
 			<div class="apartment__wrapper">
 				<img :src="currentApartmentsImg" alt="floor plan" class="apartment__image" />
@@ -46,7 +46,7 @@
 						</li>
 					</ul>
 				</div>
-				<button class="apartment__button">
+				<button class="apartment__button" @click="generatePDF" disabled>
 					{{ $t('print-to-pdf') }}
 				</button>
 			</div>
@@ -82,6 +82,8 @@ import { apartments, apartmentsSketches } from '~/assets/data/apartments';
 const { t } = useI18n();
 const route = useRoute();
 
+const generatePDF = () => {};
+
 // IDs
 const floorId = ref();
 const blockId = ref();
@@ -92,9 +94,11 @@ const apartmentId = computed(() => route.params.apartment_id);
 const currentApartment = computed(() => apartments.find(a => a.apartmentId == apartmentId.value));
 const totalArea = computed(() =>
 	currentApartment.value?.details.reduce((sum, detail) => {
-		if (detail.key_en == 'Terrace') return sum;
-		const result = sum + parseFloat(detail.val.replace(',', '.'));
-		return result;
+		const floatVal = parseFloat(detail.val.replace(',', '.'));
+		if (detail.key_en == 'Terrace' || detail.key_en == 'Balcony') {
+			return sum + floatVal / 3;
+		}
+		return sum + floatVal;
 	}, 0)
 );
 const currentApartmentDetails = computed(() => currentApartment.value?.details);
@@ -154,7 +158,11 @@ useHead({
 		font-size: 0.7rem;
 		letter-spacing: 0.3px;
 		transition: background-color 0.3s, color 0.3s;
-		&:hover {
+		&:disabled {
+			opacity: 0.3;
+			cursor: not-allowed;
+		}
+		&:hover:not(:disabled) {
 			background-color: #fff;
 			color: $clr-primary;
 		}

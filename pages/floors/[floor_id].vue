@@ -19,19 +19,22 @@
 					</div>
 				</NuxtLink>
 			</nav>
-			<div class="floor__wrapper">
-				<img :src="currentImg" alt="floor plan" class="floor__image" />
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1724 1077">
-					<NuxtLink
-						v-for="path in currentPaths"
-						:key="path.apartmentId"
-						:to="`/apartments/${path.apartmentId}`">
-						<path :d="path.path" class="floor__path"></path>
-					</NuxtLink>
-				</svg>
+			<div class="floor__center">
+				<ButtonBack :to="`/blocks/${blockId}`" />
+				<div class="floor__wrapper">
+					<img :src="currentImg" alt="floor plan" class="floor__image" />
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1724 1077">
+						<NuxtLink
+							v-for="path in currentPaths"
+							:key="path.apartmentId"
+							:to="`/apartments/${path.apartmentId}`">
+							<path :d="path.path" class="floor__path"></path>
+						</NuxtLink>
+					</svg>
+				</div>
 			</div>
 		</div>
-		<button class="floor__cta">
+		<button class="floor__cta" disabled>
 			{{ $t('print-to-pdf') }}
 		</button>
 		<div class="floor__bottom">
@@ -68,7 +71,7 @@ const route = useRoute();
 
 const floors = [7, 6, 5, 4, 3, 2, 1];
 
-const blockId = ref();
+const blockId = ref('');
 
 if (import.meta.client) {
 	blockId.value = localStorage.getItem('blockId');
@@ -119,6 +122,13 @@ useHead({
 	gap: 18px;
 	padding-inline: $layout-spacing;
 	justify-content: center;
+	padding-block: 40px;
+	&__center {
+		display: flex;
+		flex-direction: column;
+		width: 70%;
+		margin-inline: auto;
+	}
 	&__path {
 		fill: rgba(255, 255, 255, 0.2);
 		transition: fill 0.3s;
@@ -127,16 +137,16 @@ useHead({
 		}
 	}
 	&__wrapper {
+		width: 80%;
 		align-self: center;
-		width: 50%;
-		margin-inline: auto;
-		padding-right: 7%;
 		display: grid;
+		padding-right: 7%;
 		& > * {
 			grid-area: 1/1/2/2;
 		}
 	}
 	&__cta {
+		margin-top: 3vw;
 		align-self: center;
 		background-color: $clr-primary;
 		color: #fff;
@@ -147,7 +157,11 @@ useHead({
 		font-size: 0.7rem;
 		letter-spacing: 0.3px;
 		transition: background-color 0.3s, color 0.3s;
-		&:hover {
+		&:disabled {
+			opacity: 0.3;
+			cursor: not-allowed;
+		}
+		&:hover:not(:disabled) {
 			background-color: #fff;
 			color: $clr-primary;
 		}
