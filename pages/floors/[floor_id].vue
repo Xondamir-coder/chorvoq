@@ -66,8 +66,13 @@ const { t } = useI18n();
 const router = useRouter();
 const route = useRoute();
 
-const blockId = ref('');
 const floors = [7, 6, 5, 4, 3, 2, 1];
+
+const blockId = ref();
+
+if (import.meta.client) {
+	blockId.value = localStorage.getItem('blockId');
+}
 
 const currentApartments = computed(() =>
 	apartmentsSketches.find(a => a.floorId == route.params.floor_id)
@@ -82,10 +87,6 @@ const navigateToFloor = floorNum => {
 
 useHead({
 	title: t('apartments')
-});
-
-onMounted(() => {
-	blockId.value = localStorage.getItem('blockId');
 });
 </script>
 

@@ -13,7 +13,10 @@
 					</NuxtLink>
 				</svg>
 			</div>
-			<VectorsApartment class="apartment__vector" />
+			<img
+				:src="currentApartmentImg"
+				class="apartment__image"
+				:alt="`${currentApartment.apartmentId} ${$t('apartment')}`" />
 			<div class="apartment__main">
 				<div class="apartment__top">
 					<span class="apartment__labels">
@@ -24,7 +27,8 @@
 					</span>
 					<h2 class="apartment__title">
 						{{ $t('apartment') }} № {{ apartmentId.padStart(2, '0') }}
-						{{ $t('with-area') }} {{ Math.floor(totalArea) }} {{ $t('m-squared') }}
+						{{ $t('with-area') }} {{ totalArea ? Math.floor(totalArea) : 0 }}
+						{{ $t('m-squared') }}
 					</h2>
 				</div>
 				<div class="apartment__content">
@@ -33,9 +37,11 @@
 							class="apartment__detail"
 							v-for="(detail, i) in currentApartmentDetails"
 							:key="i">
-							<span class="apartment__detail-rooms">{{ detail.room }}</span>
+							<span class="apartment__detail-rooms">
+								{{ detail[`key_${$i18n.locale}`] }}
+							</span>
 							<h3 class="apartment__detail-area">
-								{{ detail.area }} {{ $t('m-squared') }}
+								{{ detail.val }} {{ $t('m-squared') }}
 							</h3>
 						</li>
 					</ul>
@@ -72,37 +78,20 @@
 
 <script setup>
 import { apartments, apartmentsSketches } from '~/assets/data/apartments';
+
 const { t } = useI18n();
 const route = useRoute();
 
-const currentApartmentDetails = [
-	{
-		room: `${t('gym')} + ${t('kitchen')}`,
-		area: '20.7'
-	},
-	{
-		room: t('hallway'),
-		area: '2.7'
-	},
-	{
-		room: t('bedroom'),
-		area: '10.6'
-	},
-	{
-		room: t('bathroom'),
-		area: '3.8'
-	},
-	{
-		room: t('terrace'),
-		area: '4.4'
-	}
-];
-
 // IDs
-const floorId = computed(() => localStorage.getItem('phaseId'));
-const blockId = computed(() => localStorage.getItem('blockId'));
-const phaseId = computed(() => localStorage.getItem('floorId'));
-const apartmentId = computed(() => route.params.apartment_id);
+const floorId = ref();
+const blockId = ref();
+const phaseId = ref();
+
+if (import.meta.client) {
+	phaseId.value = localStorage.getItem('phaseId') || '';
+	blockId.value = localStorage.getItem('blockId') || '';
+	floorId.value = localStorage.getItem('floorId') || '';
+}
 
 // Apartments sketch data
 const currentApartments = computed(() =>
@@ -114,10 +103,13 @@ const currentApartmentsImg = computed(() => currentApartments.value?.img);
 const currentApartmentsPaths = computed(() => currentApartments.value?.paths?.paths);
 
 // Current apartment data
+const apartmentId = computed(() => route.params.apartment_id);
 const currentApartment = computed(() => apartments.find(a => a.apartmentId == apartmentId.value));
 const totalArea = computed(() =>
-	currentApartment.value.details.reduce((sum, detail) => sum + parseFloat(detail.val), 0)
+	currentApartment.value?.details.reduce((sum, detail) => sum + parseFloat(detail.val), 0)
 );
+const currentApartmentDetails = computed(() => currentApartment.value?.details);
+const currentApartmentImg = computed(() => currentApartment.value?.img);
 
 useHead({
 	title: `${t('apartment')} Nº${route.params.apartment_id}`
@@ -136,6 +128,10 @@ useHead({
 	justify-content: space-around;
 	padding-block: 4vw;
 	gap: 7vw;
+	&__image {
+		object-fit: contain;
+		aspect-ratio: 376/470;
+	}
 	&__main {
 		display: flex;
 		flex-direction: column;
@@ -220,6 +216,7 @@ useHead({
 	&__wrapper {
 		align-self: center;
 		display: grid;
+		align-items: center;
 		& > * {
 			grid-area: 1/1/2/2;
 		}
