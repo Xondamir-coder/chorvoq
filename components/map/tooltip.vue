@@ -15,7 +15,7 @@
 			<polygon points="50,0 0,100 100,100" fill="white" stroke="#CAA564" stroke-width="10" />
 		</svg>
 		<div class="tooltip__item" v-for="item in items" :key="item">
-			<h2 class="tooltip__title">{{ item.id }}</h2>
+			<h2 class="tooltip__title">{{ item.id.padStart(2, '0') }}</h2>
 			<p class="tooltip__text" v-if="item.name">{{ item.name }}</p>
 		</div>
 		<div class="tooltip__pattern-container">
@@ -38,7 +38,6 @@ const updatePosition = e => {
 const items = computed(() =>
 	[
 		props.data.phaseId && { id: props.data.phaseId, name: t('phase') },
-		props.data.buildingId && { id: props.data.buildingId, name: t('house') },
 		props.data.blockId && { id: props.data.blockId, name: t('block') },
 		props.data.floorId && { id: props.data.floorId, name: t('floor') },
 		props.data.commercial?.name && { id: props.data.commercial?.name }
