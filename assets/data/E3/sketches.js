@@ -1,0 +1,67 @@
+import apartmentsSketchImg1 from '~/assets/images/apartments/E3/1.webp';
+import apartmentsSketchImg2 from '~/assets/images/apartments/E3/2.webp';
+import apartmentsSketchImg3 from '~/assets/images/apartments/E3/3.webp';
+import apartmentsSketchImg4 from '~/assets/images/apartments/E3/4.webp';
+import apartmentsSketchImg5 from '~/assets/images/apartments/E3/5.webp';
+import apartmentsSketchImg6 from '~/assets/images/apartments/E3/6.webp';
+import apartmentsSketchImg7 from '~/assets/images/apartments/E3/7.webp';
+import { E3apartmentsPaths } from './paths';
+
+export const E3apartmentsSketches = [
+	{
+		phaseId: '1',
+		blockId: 'E3',
+		floorId: '1',
+		img: apartmentsSketchImg1,
+		paths: E3apartmentsPaths.find(p => p.floorId == '1'),
+		apartments: []
+	},
+	{
+		phaseId: '1',
+		blockId: 'E3',
+		floorId: '2',
+		img: apartmentsSketchImg2,
+		paths: E3apartmentsPaths.find(p => p.floorId == '2'),
+		apartments: []
+	},
+	{
+		phaseId: '1',
+		blockId: 'E3',
+		floorId: '3',
+		img: apartmentsSketchImg3,
+		paths: E3apartmentsPaths.find(p => p.floorId == '3'),
+		apartments: []
+	},
+	{
+		phaseId: '1',
+		blockId: 'E3',
+		floorId: '4',
+		img: apartmentsSketchImg4,
+		paths: E3apartmentsPaths.find(p => p.floorId == '4'),
+		apartments: []
+	},
+	{
+		phaseId: '1',
+		blockId: 'E3',
+		floorId: '5',
+		img: apartmentsSketchImg5,
+		paths: E3apartmentsPaths.find(p => p.floorId == '5'),
+		apartments: []
+	},
+	{
+		phaseId: '1',
+		blockId: 'E3',
+		floorId: '6',
+		img: apartmentsSketchImg6,
+		paths: E3apartmentsPaths.find(p => p.floorId == '6'),
+		apartments: []
+	},
+	{
+		phaseId: '1',
+		blockId: 'E3',
+		floorId: '7',
+		img: apartmentsSketchImg7,
+		paths: E3apartmentsPaths.find(p => p.floorId == '7'),
+		apartments: []
+	}
+];

@@ -6,6 +6,9 @@
 import bgImage from '~/assets/images/genplan.avif';
 
 const { t } = useI18n();
+// const {data, error, status} = useFetch(`${API_URL}/phases`, {
+
+// });
 
 const paths = [
 	{

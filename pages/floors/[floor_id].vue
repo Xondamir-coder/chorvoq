@@ -22,7 +22,9 @@
 			<div class="floor__center">
 				<ButtonBack :to="`/blocks/${blockId}`" />
 				<div class="floor__wrapper">
-					<img :src="currentImg" alt="floor plan" class="floor__image" />
+					<ClientOnly>
+						<img :src="currentImg" alt="floor plan" class="floor__image" />
+					</ClientOnly>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1724 1077">
 						<NuxtLink
 							v-for="path in currentPaths"
@@ -63,7 +65,7 @@
 </template>
 
 <script setup>
-import { apartmentsSketches } from '~/assets/data/apartments';
+import { sketches } from '~/assets/data/sketches';
 
 const { t } = useI18n();
 const router = useRouter();
@@ -77,11 +79,12 @@ if (import.meta.client) {
 	blockId.value = localStorage.getItem('blockId');
 }
 
+const currentSketches = computed(() => sketches.find(s => s.blockId == blockId.value)?.sketches);
 const currentApartments = computed(() =>
-	apartmentsSketches.find(a => a.floorId == route.params.floor_id)
+	currentSketches.value?.find(a => a.floorId == route.params.floor_id)
 );
-const currentImg = computed(() => currentApartments.value.img);
-const currentPaths = computed(() => currentApartments.value.paths.paths);
+const currentImg = computed(() => currentApartments.value?.img);
+const currentPaths = computed(() => currentApartments.value?.paths.paths);
 
 const navigateToFloor = floorNum => {
 	localStorage.setItem('floorId', floorNum);
@@ -127,6 +130,7 @@ useHead({
 		aspect-ratio: 1.6;
 		align-self: center;
 		object-fit: contain;
+		animation: slide-from-bottom 0.3s;
 	}
 	&__center {
 		display: flex;

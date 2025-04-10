@@ -77,7 +77,8 @@
 </template>
 
 <script setup>
-import { apartments, apartmentsSketches } from '~/assets/data/apartments';
+import { apartments } from '~/assets/data/apartments';
+import { sketches } from '~/assets/data/sketches';
 
 const { t } = useI18n();
 const route = useRoute();
@@ -89,9 +90,18 @@ const floorId = ref();
 const blockId = ref();
 const phaseId = ref();
 
+if (import.meta.client) {
+	phaseId.value = localStorage.getItem('phaseId');
+	blockId.value = localStorage.getItem('blockId');
+	floorId.value = localStorage.getItem('floorId');
+}
+
 // Current apartment data
 const apartmentId = computed(() => route.params.apartment_id);
-const currentApartment = computed(() => apartments.find(a => a.apartmentId == apartmentId.value));
+const dataApartments = computed(() => apartments.find(a => a.blockId == blockId.value)?.apartments);
+const currentApartment = computed(() =>
+	dataApartments.value?.find(a => a.apartmentId == apartmentId.value)
+);
 const totalArea = computed(() =>
 	currentApartment.value?.details.reduce((sum, detail) => {
 		const floatVal = parseFloat(detail.val.replace(',', '.'));
@@ -104,18 +114,12 @@ const totalArea = computed(() =>
 const currentApartmentDetails = computed(() => currentApartment.value?.details);
 const currentApartmentImg = computed(() => currentApartment.value?.img);
 
-// Assigning IDs
-if (import.meta.client) {
-	phaseId.value = currentApartment.value.phaseId;
-	blockId.value = currentApartment.value.blockId;
-	floorId.value = currentApartment.value.floorId;
-}
-
 // Apartments sketch data
+const currentApartmentsSketches = computed(
+	() => sketches.find(s => s.blockId == blockId.value)?.sketches
+);
 const currentApartments = computed(() =>
-	apartmentsSketches.find(
-		a => a.phaseId == phaseId.value && a.blockId == blockId.value && a.floorId == floorId.value
-	)
+	currentApartmentsSketches.value?.find(s => s.blockId == blockId.value)
 );
 const currentApartmentsImg = computed(() => currentApartments.value?.img);
 const currentApartmentsPaths = computed(() => currentApartments.value?.paths?.paths);
