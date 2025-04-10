@@ -6,6 +6,7 @@ import apartmentsSketchImg5 from '~/assets/images/apartments/E2/5.webp';
 import apartmentsSketchImg6 from '~/assets/images/apartments/E2/6.webp';
 import apartmentsSketchImg7 from '~/assets/images/apartments/E2/7.webp';
 import { E2apartmentsPaths } from './paths';
+import { E2apartments } from './apartments';
 
 export const E2apartmentsSketches = [
 	{
@@ -14,7 +15,7 @@ export const E2apartmentsSketches = [
 		floorId: '1',
 		img: apartmentsSketchImg1,
 		paths: E2apartmentsPaths.find(p => p.floorId == '1'),
-		apartments: []
+		apartments: E2apartments.filter(a => a.blockId == 'E2' && a.floorId == '1')
 	},
 	{
 		phaseId: '1',
@@ -22,7 +23,7 @@ export const E2apartmentsSketches = [
 		floorId: '2',
 		img: apartmentsSketchImg2,
 		paths: E2apartmentsPaths.find(p => p.floorId == '2'),
-		apartments: []
+		apartments: E2apartments.filter(a => a.blockId == 'E2' && a.floorId == '2')
 	},
 	{
 		phaseId: '1',
@@ -30,7 +31,7 @@ export const E2apartmentsSketches = [
 		floorId: '3',
 		img: apartmentsSketchImg3,
 		paths: E2apartmentsPaths.find(p => p.floorId == '3'),
-		apartments: []
+		apartments: E2apartments.filter(a => a.blockId == 'E2' && a.floorId == '3')
 	},
 	{
 		phaseId: '1',
@@ -38,7 +39,7 @@ export const E2apartmentsSketches = [
 		floorId: '4',
 		img: apartmentsSketchImg4,
 		paths: E2apartmentsPaths.find(p => p.floorId == '4'),
-		apartments: []
+		apartments: E2apartments.filter(a => a.blockId == 'E2' && a.floorId == '4')
 	},
 	{
 		phaseId: '1',
@@ -46,7 +47,7 @@ export const E2apartmentsSketches = [
 		floorId: '5',
 		img: apartmentsSketchImg5,
 		paths: E2apartmentsPaths.find(p => p.floorId == '5'),
-		apartments: []
+		apartments: E2apartments.filter(a => a.blockId == 'E2' && a.floorId == '5')
 	},
 	{
 		phaseId: '1',
@@ -54,7 +55,7 @@ export const E2apartmentsSketches = [
 		floorId: '6',
 		img: apartmentsSketchImg6,
 		paths: E2apartmentsPaths.find(p => p.floorId == '6'),
-		apartments: []
+		apartments: E2apartments.filter(a => a.blockId == 'E2' && a.floorId == '6')
 	},
 	{
 		phaseId: '1',
@@ -62,6 +63,6 @@ export const E2apartmentsSketches = [
 		floorId: '7',
 		img: apartmentsSketchImg7,
 		paths: E2apartmentsPaths.find(p => p.floorId == '7'),
-		apartments: []
+		apartments: E2apartments.filter(a => a.blockId == 'E2' && a.floorId == '7')
 	}
 ];
