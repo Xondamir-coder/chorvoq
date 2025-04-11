@@ -1,11 +1,11 @@
 <template>
 	<div class="modal">
 		<div class="modal__image-container">
-			<img :src="data.commercial.img" :alt="data.commercial.name" class="modal__image" />
+			<img :src="data.img" :alt="data[`name_${$i18n.locale}`]" class="modal__image" />
 		</div>
 		<div class="modal__content">
-			<h3 class="modal__title">{{ data.commercial.name }}</h3>
-			<p class="modal__text">{{ data.commercial.description }}</p>
+			<h3 class="modal__title">{{ data[`name_${$i18n.locale}`] }}</h3>
+			<p class="modal__text">{{ data[`description_${$i18n.locale}`] }}</p>
 			<div class="modal__buttons">
 				<button class="modal__button" @click="emits('next')">
 					{{ capitalize($t('next')) }}

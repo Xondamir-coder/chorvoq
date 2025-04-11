@@ -62,6 +62,9 @@
 		<MapModal :data="commercialPath" v-if="showModal" @next="showNextCommercial" />
 	</Transition>
 	<MapInfo />
+	<Transition name="popup-fade">
+		<InactivePopup v-if="showInactivePopup" @close="showInactivePopup = false" />
+	</Transition>
 </template>
 
 <script setup>
@@ -76,6 +79,7 @@ const router = useRouter();
 const route = useRoute();
 
 const showModal = ref(false);
+const showInactivePopup = ref(false);
 const pathInfo = ref({});
 const commercialPath = ref({});
 const mainRef = ref();
@@ -95,10 +99,15 @@ const handleMouseMove = e => {
 };
 const navigatePath = path => {
 	// If its commercial path
-	if (path.commercial && Object.keys(path.commercial).length !== 0) {
+	if (path.isCommercial) {
 		showModal.value = true;
 		commercialPath.value = path;
 	} else {
+		if (path.isActive == false) {
+			showInactivePopup.value = true;
+			return;
+		}
+
 		let pathname;
 
 		// Update storage & get ID
@@ -123,14 +132,14 @@ const handleGlobalClick = e => {
 	}
 };
 const showNextCommercial = () => {
-	const newCommercial = props.paths.find(
-		p =>
-			p.commercial &&
-			Object.keys(p.commercial).length !== 0 &&
-			p.path !== commercialPath.value.path
-	);
-	if (!newCommercial) return;
-	commercialPath.value = newCommercial;
+	// const newCommercial = props.paths.find(
+	// 	p =>
+	// 		p.commercial &&
+	// 		Object.keys(p.commercial).length !== 0 &&
+	// 		p.path !== commercialPath.value.path
+	// );
+	// if (!newCommercial) return;
+	// commercialPath.value = newCommercial;
 };
 const emits = defineEmits(['changeFloor']);
 
@@ -157,6 +166,17 @@ onUnmounted(() => {
 .slide-in-leave-to {
 	translate: 0 20px;
 	opacity: 0;
+}
+.popup-fade {
+	&-enter-active,
+	&-leave-active {
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
+		transform: scale(1.1);
+	}
 }
 
 .plan {
