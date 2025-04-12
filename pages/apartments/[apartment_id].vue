@@ -1,17 +1,20 @@
 <template>
 	<main class="apartment" :id="`apartment-${apartmentId}`">
 		<div class="apartment__container">
-			<div class="apartment__wrapper">
-				<img :src="currentApartmentsImg" alt="floor plan" class="apartment__image" />
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1724 1077">
-					<NuxtLink
-						v-for="path in currentApartmentsPaths"
-						:key="path.apartmentId"
-						:to="`/apartments/${path.apartmentId}`"
-						active-class="apartment__link--active">
-						<path :d="path.path" class="apartment__path" />
-					</NuxtLink>
-				</svg>
+			<div class="apartment__box">
+				<ButtonBack :to="`/floors/${floorId}`" />
+				<div class="apartment__wrapper">
+					<img :src="currentApartmentsImg" alt="floor plan" class="apartment__image" />
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1724 1077">
+						<NuxtLink
+							v-for="path in currentApartmentsPaths"
+							:key="path.apartmentId"
+							:to="`/apartments/${path.apartmentId}`"
+							active-class="apartment__link--active">
+							<path :d="path.path" class="apartment__path" />
+						</NuxtLink>
+					</svg>
+				</div>
 			</div>
 			<img
 				:src="currentApartmentImg"
@@ -38,7 +41,7 @@
 							v-for="(detail, i) in currentApartmentDetails"
 							:key="i">
 							<span class="apartment__detail-rooms">
-								{{ detail[`key_${$i18n.locale}`] }}
+								{{ capitalize(detail[`key_${$i18n.locale}`]) }}
 							</span>
 							<h3 class="apartment__detail-area">
 								{{ detail.val }} {{ $t('m-squared') }}
@@ -119,7 +122,7 @@ const currentApartmentsSketches = computed(
 	() => sketches.find(s => s.blockId == blockId.value)?.sketches
 );
 const currentApartments = computed(() =>
-	currentApartmentsSketches.value?.find(s => s.blockId == blockId.value)
+	currentApartmentsSketches.value?.find(s => s.floorId == floorId.value)
 );
 const currentApartmentsImg = computed(() => currentApartments.value?.img);
 const currentApartmentsPaths = computed(() => currentApartments.value?.paths?.paths);
