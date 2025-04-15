@@ -49,8 +49,9 @@
 						</li>
 					</ul>
 				</div>
-				<button class="apartment__button" @click="generatePDF" disabled>
-					{{ $t('print-to-pdf') }}
+				<button class="apartment__button" @click="generatePDF" :disabled="isDownloading">
+					<span v-if="!isDownloading">{{ $t('print-to-pdf') }}</span>
+					<span class="loader" v-if="isDownloading"></span>
 				</button>
 			</div>
 		</div>
@@ -85,8 +86,31 @@ import { sketches } from '~/assets/data/sketches';
 
 const { t } = useI18n();
 const route = useRoute();
+const isDownloading = ref(false);
 
-const generatePDF = () => {};
+const generatePDF = async () => {
+	isDownloading.value = true;
+	try {
+		const res = await $fetch(`${API_URL}/pdf`, {
+			query: {
+				block_id: blockId.value.slice(1),
+				floor_number: floorId.value,
+				apartment_id: apartmentId.value
+			}
+		});
+		const blob = new Blob([res]);
+		const link = document.createElement('a');
+		link.href = URL.createObjectURL(blob);
+		link.setAttribute('download', `apartment-${apartmentId.value}.pdf`);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	} catch (error) {
+		console.error(error);
+	} finally {
+		isDownloading.value = false;
+	}
+};
 
 // IDs
 const floorId = ref();
@@ -154,6 +178,7 @@ useHead({
 		gap: min(2vw, 30px);
 	}
 	&__button {
+		min-width: 60%;
 		margin-top: auto;
 		align-self: flex-start;
 		background-color: $clr-primary;
@@ -165,10 +190,7 @@ useHead({
 		font-size: 0.7rem;
 		letter-spacing: 0.3px;
 		transition: background-color 0.3s, color 0.3s;
-		&:disabled {
-			opacity: 0.3;
-			cursor: not-allowed;
-		}
+
 		&:hover:not(:disabled) {
 			background-color: #fff;
 			color: $clr-primary;
@@ -300,6 +322,37 @@ useHead({
 			fill: #fff;
 			transition: fill 0.3s;
 		}
+	}
+}
+.loader {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	display: inline-block;
+	border-top: 4px solid #fff;
+	border-right: 4px solid transparent;
+	box-sizing: border-box;
+	animation: rotation 1s linear infinite;
+}
+.loader::after {
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border-left: 4px solid $clr-secondary;
+	border-bottom: 4px solid transparent;
+	animation: rotation 0.5s linear infinite reverse;
+}
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
 	}
 }
 </style>
