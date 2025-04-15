@@ -191,6 +191,10 @@ useHead({
 		letter-spacing: 0.3px;
 		transition: background-color 0.3s, color 0.3s;
 
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.7;
+		}
 		&:hover:not(:disabled) {
 			background-color: #fff;
 			color: $clr-primary;
