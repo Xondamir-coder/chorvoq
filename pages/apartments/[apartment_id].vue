@@ -2,8 +2,7 @@
 	<main class="apartment" :id="`apartment-${route.params.apartment_id}`">
 		<div class="apartment__container">
 			<div class="apartment__box">
-				<ButtonBack
-					:to="`/floors/${route.query.floor_number}?block_id=${route.query.block_id}`" />
+				<ButtonBack :to="`/floors/${floorNumber}?block_id=${blockId}`" />
 				<div class="apartment__wrapper">
 					<img
 						:src="`${DOMAIN_URL}/${sketch?.floor?.schema}`"
@@ -106,13 +105,18 @@ const apartment = ref({});
 
 const sketch = computed(() => charvakStore.selectedSketch);
 
+const blockId = computed(() => route.query.block_id ?? charvakStore.selectedApartment?.block?.id);
+const floorNumber = computed(
+	() => route.query.floor_number ?? charvakStore.selectedApartment?.floor
+);
+
 const formatNumber = number => (number ? String(number).padStart(2, '0') : '0');
 const fetchApartment = async () => {
 	try {
 		const { data } = await useFetch(`${API_URL}/apartments`, {
 			query: {
-				block_id: route.query.block_id,
-				floor_number: route.query.floor_number,
+				block_id: blockId.value,
+				floor_number: floorNumber.value,
 				apartment_id: route.params.apartment_id
 			}
 		});
@@ -128,8 +132,8 @@ const generatePDF = async () => {
 	try {
 		const res = await $fetch(`${API_URL}/pdf`, {
 			query: {
-				block_id: route.query.block_id,
-				floor_number: route.query.floor_number,
+				block_id: blockId.value,
+				floor_number: floorNumber.value,
 				apartment_id: apartment.value?.unit
 			}
 		});
