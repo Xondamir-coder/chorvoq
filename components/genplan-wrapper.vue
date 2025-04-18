@@ -13,13 +13,13 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 1920 1080"
 					preserveAspectRatio="xMidYMid slice"
-					:key="backgroundImage">
+					:key="data">
 					<NuxtLink
-						v-for="path in paths"
-						:key="path.id"
-						@mouseover="pathInfo = path"
-						@click="navigatePath(path)">
-						<path :d="path.path"></path>
+						v-for="el in data"
+						:key="el.id"
+						@mouseover="hoveredEl = el"
+						@click="navigatePath(el)">
+						<path :d="el.path"></path>
 					</NuxtLink>
 				</svg>
 			</Transition>
@@ -34,7 +34,7 @@
 					<p class="plan__tel-text">{{ $t('order-call') }}</p>
 				</div>
 			</a>
-			<div class="plan__buttons" v-if="$route.name.includes('blocks')">
+			<div class="plan__buttons" v-if="$route.name.includes('buildings')">
 				<button class="plan__button" @click="emits('changeFloor', 'prev')">
 					<IconsShortArrowLeft class="plan__arrow" />
 				</button>
@@ -55,11 +55,11 @@
 			</div>
 		</div>
 	</main>
-	<!-- <div style="color: purple">{{ pathInfo }}</div> -->
+	<!-- <div style="color: purple">{{ hoveredEl }}</div> -->
 
-	<MapTooltip :data="pathInfo" class="map-tooltip" />
+	<MapTooltip :data="hoveredEl" class="map-tooltip" />
 	<Transition name="slide-in">
-		<MapModal :data="commercialPath" v-if="showModal" @next="showNextCommercial" />
+		<MapModal :data="selectedCommercial" v-if="showModal" @next="showNextCommercial" />
 	</Transition>
 	<MapInfo />
 	<Transition name="popup-fade">
@@ -70,21 +70,24 @@
 <script setup>
 const props = defineProps({
 	backgroundImage: String,
-	paths: Array,
-	pathname: String
+	data: Array
 });
 
 const { $gsap } = useNuxtApp();
+const charvakStore = useCharvakStore();
 const router = useRouter();
 const route = useRoute();
 
 const showModal = ref(false);
 const showInactivePopup = ref(false);
-const pathInfo = ref({});
-const commercialPath = ref({});
+
+const hoveredEl = ref();
+const selectedCommercial = ref();
+
 const mainRef = ref();
 
 const st = 32;
+
 const handleMouseMove = e => {
 	const ySt = e.clientY - window.innerHeight / 3 < 0 ? 100 : st;
 
@@ -97,30 +100,30 @@ const handleMouseMove = e => {
 		duration: 0.5
 	});
 };
-const navigatePath = path => {
+const navigatePath = el => {
 	// If its commercial path
-	if (path.isCommercial) {
+	if (el.commercial) {
 		showModal.value = true;
-		commercialPath.value = path;
+		selectedCommercial.value = el.commercial;
 	} else {
-		if (path.isActive == false) {
+		if (el.status == false) {
 			showInactivePopup.value = true;
 			return;
 		}
 
-		let pathname;
-
 		// Update storage & get ID
-		if (route.name.includes('genplan')) {
-			localStorage.setItem('phaseId', path.phaseId);
-			pathname = `/phases/${path.phaseId}`;
-		} else if (route.name.includes('phases')) {
-			localStorage.setItem('blockId', path.blockId);
-			pathname = `/blocks/${path.blockId}`;
-		} else if (route.name.includes('blocks')) {
-			localStorage.setItem('floorId', path.floorId);
-			localStorage.setItem('blockId', path.blockId);
-			pathname = `/floors/${path.floorId}`;
+		let pathname;
+		const { name } = route;
+
+		if (name.includes('genplan')) {
+			charvakStore.setPhase(el);
+			pathname = `/phases/${el.id}`;
+		} else if (name.includes('phases')) {
+			charvakStore.setBuilding(el);
+			pathname = `/buildings/${el.building_id}`;
+		} else if (name.includes('buildings')) {
+			charvakStore.setFloor(el);
+			pathname = `/floors/${el.floor_number}?block_id=${el.block_id}`;
 		}
 		router.push(pathname);
 	}
@@ -128,7 +131,7 @@ const navigatePath = path => {
 const handleGlobalClick = e => {
 	if (!e.target.closest('path')) {
 		showModal.value = false;
-		commercialPath.value = {};
+		selectedCommercial.value = {};
 	}
 };
 const showNextCommercial = () => {

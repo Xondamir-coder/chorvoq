@@ -1,12 +1,17 @@
 <template>
-	<GenplanWrapper :background-image="backgroundImage" :paths="phasesData" />
+	<GenplanWrapper :background-image="backgroundImage" :data="phases" />
 </template>
 
 <script setup>
 import backgroundImage from '~/assets/images/genplan.avif';
-import phasesData from '~/assets/data/phases.json';
 
 const { t } = useI18n();
+
+const phases = ref();
+
+// Create a reactive state and set default value
+const { data } = await useFetch(`${API_URL}/phases`);
+phases.value = data.value;
 
 useHead({
 	title: t('genplan')

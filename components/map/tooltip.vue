@@ -14,9 +14,37 @@
 			class="tooltip__arrow">
 			<polygon points="50,0 0,100 100,100" fill="white" stroke="#CAA564" stroke-width="10" />
 		</svg>
-		<div class="tooltip__item" v-for="item in items" :key="item">
-			<h2 class="tooltip__title">{{ item.id.padStart(2, '0') }}</h2>
-			<p class="tooltip__text" v-if="item.name">{{ item.name }}</p>
+		<div class="tooltip__item" v-if="route.path.includes('genplan')">
+			<h2 class="tooltip__title">
+				{{ data?.name }}
+			</h2>
+			<p class="tooltip__text">
+				{{ $t('phase') }}
+			</p>
+		</div>
+		<div class="tooltip__item" v-if="route.path.includes('phases')">
+			<h2 class="tooltip__title">
+				{{ data?.commercial ? data?.commercial?.[`name_${$i18n.locale}`] : data?.name }}
+			</h2>
+			<p class="tooltip__text">
+				{{ $t('block') }}
+			</p>
+		</div>
+		<div class="tooltip__item" v-if="route.path.includes('buildings')">
+			<h2 class="tooltip__title">
+				{{ data?.block.name }}
+			</h2>
+			<p class="tooltip__text">
+				{{ $t('block') }}
+			</p>
+		</div>
+		<div class="tooltip__item" v-if="route.path.includes('buildings')">
+			<h2 class="tooltip__title">
+				{{ String(data?.floor_number).padStart(2, '0') }}
+			</h2>
+			<p class="tooltip__text">
+				{{ $t('floor') }}
+			</p>
 		</div>
 		<div class="tooltip__pattern-container">
 			<VectorsStarPattern class="tooltip__pattern" />
@@ -25,24 +53,16 @@
 </template>
 
 <script setup>
-const { t } = useI18n();
-
 // Create a reactive object to store the cursor position
 const position = ref({ x: 0, y: 0 });
+
+const route = useRoute();
 
 // Function to update the position based on mouse movement
 const updatePosition = e => {
 	// Offset added so tooltip does not obscure the cursor
 	position.value = { x: e.clientX + 10, y: e.clientY + 10 };
 };
-const items = computed(() =>
-	[
-		props.data.phaseId && { id: props.data.phaseId, name: t('phase') },
-		props.data.blockId && { id: props.data.blockId, name: t('block') },
-		props.data.floorId && { id: props.data.floorId, name: t('floor') },
-		props.data.commercial?.name && { id: props.data.commercial?.name }
-	].filter(Boolean)
-);
 
 onMounted(() => {
 	window.addEventListener('mousemove', updatePosition);

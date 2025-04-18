@@ -14,25 +14,37 @@
 					<div class="floor__button-content">
 						<span class="floor__button-floor">{{ $t('floor') }}</span>
 						<span class="floor__button-block">
-							{{ blockId }} {{ $t('block').toLowerCase() }}
+							{{ blockName }} {{ $t('block').toLowerCase() }}
 						</span>
 					</div>
 				</NuxtLink>
 			</nav>
 			<div class="floor__center">
-				<ButtonBack :to="`/blocks/${blockId}`" />
+				<ButtonBack :to="`/buildings/${charvakStore.selectedBuilding?.id}`" />
 				<div class="floor__wrapper">
 					<ClientOnly>
-						<img :src="currentImg" alt="floor plan" class="floor__image" />
+						<Transition name="fade">
+							<img
+								:src="schemaImg"
+								alt="floor plan"
+								class="floor__image"
+								:key="schemaImg" />
+						</Transition>
+						<Transition name="fade">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 1724 1077"
+								:key="apartments">
+								<NuxtLink
+									v-for="apartment in apartments"
+									:key="apartment?.id"
+									:to="`/apartments/${apartment?.id}?block_id=${apartment.block_id}&floor_number=${apartment.floor}`"
+									@click="charvakStore.setApartment(apartment)">
+									<path :d="apartment?.path" class="floor__path"></path>
+								</NuxtLink>
+							</svg>
+						</Transition>
 					</ClientOnly>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1724 1077">
-						<NuxtLink
-							v-for="path in currentPaths"
-							:key="path.apartmentId"
-							:to="`/apartments/${path.apartmentId}`">
-							<path :d="path.path" class="floor__path"></path>
-						</NuxtLink>
-					</svg>
 				</div>
 			</div>
 		</div>
@@ -65,30 +77,45 @@
 </template>
 
 <script setup>
-import { sketches } from '~/assets/data/sketches';
-
+const charvakStore = useCharvakStore();
 const { t } = useI18n();
 const router = useRouter();
 const route = useRoute();
 
 const floors = [7, 6, 5, 4, 3, 2, 1];
 
-const blockId = ref('');
+const floor = ref({});
+const apartments = ref([]);
 
-if (import.meta.client) {
-	blockId.value = localStorage.getItem('blockId');
-}
+const blockName = computed(() => charvakStore.selectedFloor?.block?.name);
+const schemaImg = computed(() => `${DOMAIN_URL}/${floor.value?.schema}`);
 
-const currentSketches = computed(() => sketches.find(s => s.blockId == blockId.value)?.sketches);
-const currentApartments = computed(() =>
-	currentSketches.value?.find(a => a.floorId == route.params.floor_id)
-);
-const currentImg = computed(() => currentApartments.value?.img);
-const currentPaths = computed(() => currentApartments.value?.paths.paths);
+const fetchData = async () => {
+	try {
+		const { data } = await useFetch(`${API_URL}/floors`, {
+			query: {
+				block_id: route.query.block_id || charvakStore.selectedFloor?.block?.id,
+				floor_number: route.params.floor_id
+			}
+		});
+		apartments.value = data.value?.apartments;
+		floor.value = data.value?.floor;
+
+		charvakStore.setSketch({
+			floor: floor.value,
+			apartments: apartments.value
+		});
+	} catch (error) {
+		console.error(error);
+	}
+};
+fetchData();
 
 const navigateToFloor = floorNum => {
-	localStorage.setItem('floorId', floorNum);
-	router.push(`/floors/${floorNum}`);
+	router.push({
+		path: `/floors/${floorNum}`,
+		query: { block_id: route.params.block_id || charvakStore.selectedFloor?.block?.id }
+	});
 };
 
 useHead({
@@ -282,6 +309,18 @@ useHead({
 			box-shadow: 0px 1px 10px 0px rgba(255, 255, 255, 0.33) inset;
 			font-weight: 700;
 		}
+	}
+}
+.fade {
+	&-enter-active,
+	&-leave-active,
+	&-move {
+		transition: opacity 0.5s ease, transform 0.5s ease;
+	}
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
+		transform: translateY(10px);
 	}
 }
 </style>

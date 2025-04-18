@@ -1,7 +1,10 @@
 <template>
 	<div class="modal">
 		<div class="modal__image-container">
-			<img :src="data.img" :alt="data[`name_${$i18n.locale}`]" class="modal__image" />
+			<img
+				:src="`${DOMAIN_URL}/${data.image}`"
+				:alt="data[`name_${$i18n.locale}`]"
+				class="modal__image" />
 		</div>
 		<div class="modal__content">
 			<h3 class="modal__title">{{ data[`name_${$i18n.locale}`] }}</h3>
