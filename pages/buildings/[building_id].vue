@@ -3,6 +3,7 @@
 		:background-image="currentImg"
 		:data="currentPaths"
 		@change-floor="changeFloor" />
+	<ButtonBack :to="`/phases/${charvakStore.selectedPhase?.id}`" class="back-button" />
 </template>
 
 <script setup>

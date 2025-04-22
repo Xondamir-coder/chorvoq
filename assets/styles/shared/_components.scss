@@ -8,3 +8,9 @@
 	color: $clr-primary;
 	align-self: center;
 }
+.back-button {
+	position: fixed !important;
+	left: 7%;
+	top: 20%;
+	z-index: 10;
+}

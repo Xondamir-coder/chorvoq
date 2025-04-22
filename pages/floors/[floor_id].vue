@@ -20,7 +20,7 @@
 				</NuxtLink>
 			</nav>
 			<div class="floor__center">
-				<ButtonBack :to="`/buildings/${charvakStore.selectedBuilding?.id}`" />
+				<ButtonBack :to="`/buildings/${charvakStore.selectedBuilding?.building_id}`" />
 				<div class="floor__wrapper">
 					<ClientOnly>
 						<Transition name="fade">
@@ -52,15 +52,7 @@
 			{{ $t('print-to-pdf') }}
 		</button>
 		<div class="floor__bottom">
-			<a href="tel:+998 71 202 22 22" class="floor__tel">
-				<div class="floor__tel-circle">
-					<IconsPhone class="floor__tel-icon" />
-				</div>
-				<div class="floor__tel-data">
-					<h3 class="floor__tel-title">71 202 22 22</h3>
-					<p class="floor__tel-text">{{ $t('order-call') }}</p>
-				</div>
-			</a>
+			<ButtonCall :is-yellow="true" />
 			<div class="floor__social">
 				<a target="_blank" href="https://telegram.org" class="floor__social-item">
 					<IconsTelegram class="floor__social-icon" />

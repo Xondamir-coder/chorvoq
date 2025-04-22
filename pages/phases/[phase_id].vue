@@ -1,5 +1,6 @@
 <template>
 	<GenplanWrapper :background-image="backgroundImage" :data="blocks" />
+	<ButtonBack to="/genplan" class="back-button" />
 </template>
 
 <script setup>
@@ -49,3 +50,5 @@ useHead({
 	title: t('blocks')
 });
 </script>
+
+<style scoped lang="scss"></style>

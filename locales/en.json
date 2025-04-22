@@ -56,8 +56,8 @@
 	"friday": "Friday",
 	"saturday": "Saturday",
 	"sunday": "Sunday",
-	"your-name": "Your Name",
-	"your-message": "Your Message",
+	"your-name": "Your name",
+	"your-tel": "Your phone",
 	"send-message": "Send Message",
 	"m-squared": "m²",
 	"with-area": "area",
@@ -69,6 +69,7 @@
 	"blocks": "Blocks",
 	"hotel-desc": "A world‑class hotel in the heart of Charvak – comfort, service, and an unforgettable stay!",
 	"inactive-popup-text": "The item you clicked on is currently inactive",
+	"everyday": "Everyday",
 
 	"home-hero-subtitle-1": "A new perspective on country living.",
 	"home-hero-subtitle-2": "Harmony of nature and urban comfort",

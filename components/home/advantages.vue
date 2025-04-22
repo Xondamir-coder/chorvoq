@@ -75,8 +75,11 @@ onMounted(() => {
 	}
 	&__list {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 27vw, 400px), 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(clamp(400px, 27vw, 500px), 1fr));
 		gap: 32px;
+		@media only screen and (max-width: $bp-md) {
+			grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 27vw, 500px), 1fr));
+		}
 	}
 	&__item {
 		border: 1px solid rgba($clr-grey, 0.2);

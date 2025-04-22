@@ -71,15 +71,7 @@
 			</div>
 		</div>
 		<div class="apartment__bottom">
-			<a href="tel:+998 71 202 22 22" class="apartment__tel">
-				<div class="apartment__tel-circle">
-					<IconsPhone class="apartment__tel-icon" />
-				</div>
-				<div class="apartment__tel-data">
-					<h3 class="apartment__tel-title">71 202 22 22</h3>
-					<p class="apartment__tel-text">{{ $t('order-call') }}</p>
-				</div>
-			</a>
+			<ButtonCall :is-yellow="true" />
 			<div class="apartment__social">
 				<a target="_blank" href="https://telegram.org" class="apartment__social-item">
 					<IconsTelegram class="apartment__social-icon" />
@@ -101,9 +93,10 @@ const route = useRoute();
 const charvakStore = useCharvakStore();
 
 const isDownloading = ref(false);
-const apartment = ref({});
+const apartment = ref();
 
 const sketch = computed(() => charvakStore.selectedSketch);
+const unit = computed(() => apartment.value?.unit);
 
 const blockId = computed(() => route.query.block_id ?? charvakStore.selectedApartment?.block?.id);
 const floorNumber = computed(
@@ -155,7 +148,7 @@ const generatePDF = async () => {
 };
 
 useHead({
-	title: `${t('apartment')} Nº${apartment.value?.unit}`
+	title: `${t('apartment')} Nº${unit.value}`
 });
 </script>
 
@@ -311,6 +304,10 @@ useHead({
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 17px;
+	}
+	&__box {
+		display: flex;
+		flex-direction: column;
 	}
 	&__container {
 		display: grid;

@@ -8,11 +8,12 @@
 				fill="inherit" />
 		</svg>
 		<span>{{ $t('back') }}</span>
+		<VectorsStarPattern class="back__star" />
 	</NuxtLink>
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
 	to: String
 });
 </script>
@@ -26,13 +27,38 @@ defineProps({
 	display: flex;
 	align-items: center;
 	gap: min(15px, 1vw);
-	&:hover svg {
-		transform: translateX(-5px);
+	background-color: #fff;
+	padding-inline: 20px;
+	padding-block: 8px;
+	border: 2px solid $clr-primary;
+	box-shadow: 0px 0px 114px 0px #0000009f;
+	transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+	position: relative;
+	overflow: hidden;
+	&:hover {
+		background-color: rgba($clr-primary, 0.8);
+		color: #fff;
+		.back__icon {
+			transform: translateX(-5px);
+			fill: #fff;
+		}
+		.back__star {
+			fill: #fff;
+		}
+	}
+	&__star {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 20%;
+		fill: rgba($clr-primary, 0.6);
+		transform: translate(50%, 25%);
+		transition: transform 0.3s, fill 0.3s;
 	}
 	&__icon {
 		width: 12px;
 		fill: $clr-primary;
-		transition: transform 0.3s;
+		transition: transform 0.3s, fill 0.3s;
 	}
 }
 </style>

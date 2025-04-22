@@ -17,7 +17,7 @@
 						{{ $t('opening-hours') }}
 					</span>
 					<h3 class="message__col-title">
-						{{ $t('monday') }} - {{ $t('friday') }}
+						{{ $t('everyday') }}
 						<br />
 						9:00 - 20:00
 					</h3>
@@ -27,9 +27,9 @@
 					<span class="message__col-label">
 						{{ $t('contacts') }}
 					</span>
-					<a href="tel:020 7993 2905" class="message__col-title"> 020 7993 2905 </a>
-					<a href="mailto:hello@finsweet.com" class="message__col-text">
-						hello@finsweet.com
+					<a href="tel:+998 71 202 22 22" class="message__col-title">+998 71 202 22 22</a>
+					<a href="mailto:Chorvoqdarvozasi@gmail.com" class="message__col-text">
+						Chorvoqdarvozasi@gmail.com
 					</a>
 				</li>
 			</ul>
@@ -39,17 +39,18 @@
 					v-model="name"
 					class="message__input"
 					type="text"
-					name="name"
-					id="input-name"
-					placeholder="Ваше имя" />
-				<textarea
+					:placeholder="$t('your-name')" />
+				<input
 					required
-					v-model="message"
+					v-model="tel"
 					class="message__input"
-					name="message"
-					id="input-message"
-					placeholder="Ваше сообщение"
-					rows="1"></textarea>
+					type="tel"
+					:minlength="MAX_DIGITS"
+					:maxlength="MAX_DIGITS"
+					:placeholder="$t('your-tel')"
+					@input="validateInput"
+					@click="prependCountry"
+					@focus="prependCountry" />
 				<button class="message__button" type="submit">{{ $t('send-message') }}</button>
 			</form>
 		</div>
@@ -58,11 +59,43 @@
 
 <script setup>
 const name = ref('');
-const message = ref('');
+const tel = ref('');
 
-const submitForm = () => {
-	console.log(name.value, message.value);
+const COUNTRY = '+998 9';
+const MAX_DIGITS = 6 + 11;
+const LENGTHS_WITH_SPACE = [7, 11, 14];
+
+const validateInput = e => {
+	// Validate
+	const regex = /^[\d\s+]+$/;
+	if (!regex.test(tel.value)) {
+		tel.value = tel.value.slice(0, -1);
+	}
+
+	// Always prepend country
+	if (tel.value.length < 7) {
+		tel.value = COUNTRY;
+	}
+
+	// Don't add space on deletion
+	if (e.inputType === 'deleteContentBackward') {
+		return;
+	}
+
+	// Add spaces
+	if (LENGTHS_WITH_SPACE.includes(tel.value.length)) {
+		tel.value = `${tel.value} `;
+	}
 };
+const submitForm = async () => {
+	if (tel.value.length !== MAX_DIGITS) return;
+	const content = `
+Имя: ${name.value}
+Телефон: ${tel.value}
+`;
+	sendDataTelegram(content);
+};
+const prependCountry = () => (!tel.value.includes(COUNTRY) ? (tel.value = COUNTRY) : null);
 
 onMounted(() => {
 	const parentPrefix = '#home-message .message';

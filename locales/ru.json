@@ -10,6 +10,7 @@
 	"next": "Следующий",
 	"living-space": "Жилая площадь",
 
+	"everyday": "Ежедневно",
 	"phase": "Фаза",
 	"floor": "Этаж",
 	"floors": "Этажи",
@@ -57,7 +58,7 @@
 	"saturday": "Суббота",
 	"sunday": "Воскресенье",
 	"your-name": "Ваше имя",
-	"your-message": "Ваше сообщение",
+	"your-tel": "Ваш телефон",
 	"send-message": "Отправить сообщение",
 	"m-squared": "м²",
 	"with-area": "площадью",

@@ -109,6 +109,8 @@ watch(locale, async () => {
 .about {
 	display: flex;
 	flex-direction: column;
+	max-width: 1600px;
+	margin-inline: auto;
 	&__detail {
 		display: flex;
 		flex-direction: column;

@@ -1,12 +1,31 @@
 <template>
 	<header class="header" :class="{ 'header--colorful': isColorful }">
 		<div class="header__vectors">
-			<VectorsLogo class="header__vector" v-if="!isColorful" />
-			<VectorsLogoColored class="header__vector" v-else />
-			<VectorsNbu class="header__vector" v-if="!isColorful" />
-			<VectorsNbuColored class="header__vector" v-else />
-			<VectorsDcity class="header__vector" v-if="!isColorful" />
-			<VectorsDcityColored class="header__vector" v-else />
+			<a
+				class="header__vector-link"
+				href="#"
+				target="_blank"
+				rel="noopener noreferrer"
+				@click.prevent="$router.push('/')">
+				<VectorsLogo class="header__vector" v-if="!isColorful" />
+				<VectorsLogoColored class="header__vector" v-else />
+			</a>
+			<a
+				class="header__vector-link"
+				href="https://nbu.uz"
+				target="_blank"
+				rel="noopener noreferrer">
+				<VectorsNbu class="header__vector" v-if="!isColorful" />
+				<VectorsNbuColored class="header__vector" v-else />
+			</a>
+			<a
+				class="header__vector-link"
+				href="https://dreamcity.uz"
+				target="_blank"
+				rel="noopener noreferrer">
+				<VectorsDcity class="header__vector" v-if="!isColorful" />
+				<VectorsDcityColored class="header__vector" v-else />
+			</a>
 		</div>
 		<button class="header__hamburger" @click="toggleMenu" :class="{ active: isMenuOpen }">
 			<IconsHamburger :class="{ active: !isMenuOpen }" />
@@ -240,6 +259,13 @@ const navigateSection = to => {
 	&__vector {
 		width: clamp(70px, 7.1vw, 108px);
 		animation: slide-from-bottom 0.5s backwards;
+		&-link {
+			display: flex;
+			&[href="https://dreamcity.uz"]
+			{
+				transform: translateY(5px);
+			}
+		}
 		@for $i from 1 through 3 {
 			&:nth-child(#{$i}) {
 				animation-delay: 0.05s * $i;

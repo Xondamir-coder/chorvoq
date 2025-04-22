@@ -25,15 +25,7 @@
 			</Transition>
 		</div>
 		<div class="plan__bottom">
-			<a href="tel:+998 71 202 22 22" class="plan__tel">
-				<div class="plan__circle">
-					<IconsPhone class="plan__icon" />
-				</div>
-				<div class="plan__tel-data">
-					<h3 class="plan__tel-title"><span style="opacity: 0.73">71</span> 202 22 22</h3>
-					<p class="plan__tel-text">{{ $t('order-call') }}</p>
-				</div>
-			</a>
+			<ButtonCall />
 			<div class="plan__buttons" v-if="$route.name.includes('buildings')">
 				<button class="plan__button" @click="emits('changeFloor', 'prev')">
 					<IconsShortArrowLeft class="plan__arrow" />
@@ -56,7 +48,6 @@
 		</div>
 	</main>
 	<!-- <div style="color: purple">{{ hoveredEl }}</div> -->
-
 	<MapTooltip :data="hoveredEl" class="map-tooltip" />
 	<Transition name="slide-in">
 		<MapModal :data="selectedCommercial" v-if="showModal" @next="showNextCommercial" />
