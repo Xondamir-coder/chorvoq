@@ -129,11 +129,25 @@ fetchApartment();
 const makePDF = async () => {
 	isDownloading.value = true;
 	try {
-		await generatePDF('/pdf', `${t('apartment').toLowerCase()}-${apartment.value?.unit}`, {
-			block_id: blockId.value,
-			floor_number: floorNumber.value,
-			apartment_id: apartment.value?.unit
+		const res = await $fetch(`${API_URL}/pdf`, {
+			query: {
+				block_id: blockId.value,
+				floor_number: floorNumber.value,
+				apartment_id: apartment.value?.unit
+			}
 		});
+		const blob = new Blob([res]);
+		const link = document.createElement('a');
+		link.href = URL.createObjectURL(blob);
+		link.setAttribute(
+			'download',
+			`${t('apartment').toLowerCase()}-${apartment.value?.unit}.pdf`
+		);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	} catch (error) {
+		console.error(error);
 	} finally {
 		isDownloading.value = false;
 	}

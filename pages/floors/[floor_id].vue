@@ -106,14 +106,24 @@ const navigateToFloor = floorNum => {
 const makePDF = async () => {
 	isDownloading.value = true;
 	try {
-		await generatePDF(
-			'/pdf/floor',
-			`${t('schema').toLowerCase()}-${blockName.value}-${floorNumber.value}`,
-			{
+		const res = await $fetch(`${API_URL}/pdf/floor`, {
+			query: {
 				block_id: blockId.value,
 				floor_number: floorNumber.value
 			}
+		});
+		const blob = new Blob([res]);
+		const link = document.createElement('a');
+		link.href = URL.createObjectURL(blob);
+		link.setAttribute(
+			'download',
+			`${t('schema').toLowerCase()}-${blockName.value}-${floorNumber.value}.pdf`
 		);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	} catch (error) {
+		console.error(error);
 	} finally {
 		isDownloading.value = false;
 	}

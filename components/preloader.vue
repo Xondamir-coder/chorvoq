@@ -52,7 +52,7 @@ const activeIndex = ref(0);
 const isHidden = ref(false);
 
 const percentages = [0, 57, 100];
-const INTERVAL_TIME = 1.75;
+const INTERVAL_TIME = 1.25;
 let interval;
 
 if (import.meta.client) {
