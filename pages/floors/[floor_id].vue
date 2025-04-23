@@ -48,8 +48,9 @@
 				</div>
 			</div>
 		</div>
-		<button class="floor__cta" disabled>
-			{{ $t('print-to-pdf') }}
+		<button class="floor__cta" @click="makePDF" :disabled="isDownloading">
+			<span v-if="!isDownloading">{{ $t('print-to-pdf') }}</span>
+			<Spinner v-else />
 		</button>
 		<div class="floor__bottom">
 			<ButtonCall :is-yellow="true" />
@@ -82,6 +83,7 @@ const route = useRoute();
 
 const floor = ref();
 const apartments = ref();
+const isDownloading = ref(false);
 
 const floors = computed(() => {
 	const min = charvakStore.selectedFloorsCount?.min_floor ?? 1;
@@ -90,6 +92,9 @@ const floors = computed(() => {
 });
 const blockName = computed(() => charvakStore.selectedFloor?.block?.name);
 const blockId = computed(() => route.query.block_id ?? charvakStore.selectedFloor?.block?.id);
+const floorNumber = computed(
+	() => route.params.floor_id ?? charvakStore.selectedFloor?.floor_number
+);
 const schemaImg = computed(() => `${DOMAIN_URL}/${floor.value?.schema}`);
 
 const navigateToFloor = floorNum => {
@@ -97,6 +102,21 @@ const navigateToFloor = floorNum => {
 		path: `/floors/${floorNum}`,
 		query: { block_id: route.params.block_id || charvakStore.selectedFloor?.block?.id }
 	});
+};
+const makePDF = async () => {
+	isDownloading.value = true;
+	try {
+		await generatePDF(
+			'/pdf/floor',
+			`${t('schema').toLowerCase()}-${blockName.value}-${floorNumber.value}`,
+			{
+				block_id: blockId.value,
+				floor_number: floorNumber.value
+			}
+		);
+	} finally {
+		isDownloading.value = false;
+	}
 };
 const fetchFloors = async () => {
 	try {
@@ -210,6 +230,7 @@ useHead({
 		font-size: 0.7rem;
 		letter-spacing: 0.3px;
 		transition: background-color 0.3s, color 0.3s;
+		min-width: 200px;
 		&:disabled {
 			opacity: 0.3;
 			cursor: not-allowed;

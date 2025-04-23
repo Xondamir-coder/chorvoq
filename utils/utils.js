@@ -30,3 +30,30 @@ ${content.trim()}
 		console.error(e);
 	}
 };
+
+/**
+ * Generates a PDF file from the server based on the given endpoint and query.
+ * Creates a Blob from the response, creates an anchor element, sets the href
+ * attribute to the blob URL, sets the download attribute to the given file name
+ * with the .pdf extension, appends the anchor element to the document body,
+ * simulates a click on the anchor element, and then removes the anchor element.
+ * If an error occurs during the process, logs the error to the console.
+ *
+ * @param {string} endpoint - API endpoint to query
+ * @param {string} fileName - File name to use for the generated PDF
+ * @param {object} query - Query object to pass in the request body
+ */
+export const generatePDF = async (endpoint, fileName, query) => {
+	try {
+		const res = await $fetch(`${API_URL}${endpoint}`, { query: query });
+		const blob = new Blob([res]);
+		const link = document.createElement('a');
+		link.href = URL.createObjectURL(blob);
+		link.setAttribute('download', `${fileName}.pdf`);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	} catch (error) {
+		console.error(error);
+	}
+};

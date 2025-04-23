@@ -64,7 +64,7 @@
 						</li>
 					</ul>
 				</div>
-				<button class="apartment__button" @click="generatePDF" :disabled="isDownloading">
+				<button class="apartment__button" @click="makePDF" :disabled="isDownloading">
 					<span v-if="!isDownloading">{{ $t('print-to-pdf') }}</span>
 					<Spinner v-if="isDownloading" />
 				</button>
@@ -126,35 +126,21 @@ const fetchApartment = async () => {
 };
 fetchApartment();
 
-const generatePDF = async () => {
+const makePDF = async () => {
 	isDownloading.value = true;
 	try {
-		const res = await $fetch(`${API_URL}/pdf`, {
-			query: {
-				block_id: blockId.value,
-				floor_number: floorNumber.value,
-				apartment_id: apartment.value?.unit
-			}
+		await generatePDF('/pdf', `${t('apartment').toLowerCase()}-${apartment.value?.unit}`, {
+			block_id: blockId.value,
+			floor_number: floorNumber.value,
+			apartment_id: apartment.value?.unit
 		});
-		const blob = new Blob([res]);
-		const link = document.createElement('a');
-		link.href = URL.createObjectURL(blob);
-		link.setAttribute(
-			'download',
-			`${t('apartment').toLowerCase()}-${apartment.value?.unit}.pdf`
-		);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();
-	} catch (error) {
-		console.error(error);
 	} finally {
 		isDownloading.value = false;
 	}
 };
 
 useHead({
-	title: `${t('apartment')} Nº${unit.value}`
+	title: `${t('apartment')}`
 });
 </script>
 
