@@ -18,17 +18,18 @@
 			</a>
 		</div>
 		<div class="footer__social">
-			<a href="#" target="_blank">
+			<a
+				href="https://www.facebook.com/dreamcity.uz?mibextid=wwXIfr&mibextid=wwXIfr"
+				target="_blank">
 				<IconsFacebookCircular class="footer__icon" />
 			</a>
-			<a href="#" target="_blank">
-				<IconsTwitter class="footer__icon" />
+			<a href="https://t.me/dreamcityuz" target="_blank">
+				<IconsTelegram class="footer__icon" />
 			</a>
-			<a href="#" target="_blank">
+			<a
+				href="https://www.instagram.com/dreamcity.uz?igsh=cWd6ZjdsMXhzeDR1&utm_source=qr"
+				target="_blank">
 				<IconsInstagramOutlined class="footer__icon" />
-			</a>
-			<a href="#" target="_blank">
-				<IconsLinkedin class="footer__icon" />
 			</a>
 		</div>
 	</footer>

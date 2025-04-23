@@ -58,7 +58,7 @@
 				class="header__language"
 				v-for="(language, i) in languages"
 				:key="language"
-				@click="setLocale(language)">
+				@click="changeLocale(language)">
 				<span>{{ capitalize(language) }}</span>
 				<span v-if="i != languages.length - 1">/</span>
 			</button>
@@ -78,6 +78,10 @@ const isColorful = computed(
 	() => route.name.includes('floors') || route.name.includes('apartments')
 );
 
+const changeLocale = locale => {
+	localStorage.setItem('locale', locale);
+	setLocale(locale);
+};
 const toggleMenu = () => {
 	isMenuOpen.value = !isMenuOpen.value;
 	isMenuOpen.value ? $lenis.stop() : $lenis.start();

@@ -18,7 +18,6 @@ export default defineNuxtConfig({
 			titleTemplate: '%s | Chorvoq Darvozasi'
 		}
 	},
-
 	css: [
 		'~/assets/styles/main.scss' // Replace with the path to your SCSS file
 	],
@@ -27,5 +26,5 @@ export default defineNuxtConfig({
 		vueI18n: '~/locales/i18n.config.js'
 	},
 
-	modules: ['@nuxtjs/i18n', '@pinia/nuxt']
+	modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@nuxtjs/seo']
 });

@@ -4,8 +4,8 @@ import uz from './uz.json';
 
 export default defineI18nConfig(() => ({
 	legacy: false,
-	// TODO: Automatic locale based on browsers default
 	locale: 'ru',
+	fallbackLocale: 'ru',
 	messages: {
 		en,
 		ru,

@@ -21,13 +21,19 @@
 			<p class="menu__contacts-label">Пн-пт: 9:00–18:00</p>
 		</div>
 		<div class="menu__social">
-			<a class="menu__social-item" href="https://telegram.org/" target="_blank">
+			<a class="menu__social-item" href="https://t.me/dreamcityuz" target="_blank">
 				<IconsTelegram class="menu__icon" />
 			</a>
-			<a class="menu__social-item" href="https://instagram.com/" target="_blank">
+			<a
+				class="menu__social-item"
+				href="https://www.instagram.com/dreamcity.uz?igsh=cWd6ZjdsMXhzeDR1&utm_source=qr"
+				target="_blank">
 				<IconsInstagram class="menu__icon" />
 			</a>
-			<a class="menu__social-item" href="https://facebook.com/" target="_blank">
+			<a
+				class="menu__social-item"
+				href="https://www.facebook.com/dreamcity.uz?mibextid=wwXIfr&mibextid=wwXIfr"
+				target="_blank">
 				<IconsFacebook class="menu__icon" />
 			</a>
 		</div>

@@ -54,13 +54,19 @@
 		<div class="floor__bottom">
 			<ButtonCall :is-yellow="true" />
 			<div class="floor__social">
-				<a target="_blank" href="https://telegram.org" class="floor__social-item">
+				<a target="_blank" href="https://t.me/dreamcityuz" class="floor__social-item">
 					<IconsTelegram class="floor__social-icon" />
 				</a>
-				<a target="_blank" href="https://facebook.com" class="floor__social-item">
+				<a
+					target="_blank"
+					href="https://www.facebook.com/dreamcity.uz?mibextid=wwXIfr&mibextid=wwXIfr"
+					class="floor__social-item">
 					<IconsFacebookCircular class="floor__social-icon" />
 				</a>
-				<a target="_blank" href="https://instagram.com" class="floor__social-item">
+				<a
+					target="_blank"
+					href="https://www.instagram.com/dreamcity.uz?igsh=cWd6ZjdsMXhzeDR1&utm_source=qr"
+					class="floor__social-item">
 					<IconsInstagram class="floor__social-icon" />
 				</a>
 			</div>
@@ -277,6 +283,7 @@ useHead({
 		display: flex;
 	}
 	&__buttons {
+		align-self: center;
 		display: flex;
 		gap: 20px;
 		flex-direction: column;

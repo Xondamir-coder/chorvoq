@@ -35,13 +35,17 @@
 				</button>
 			</div>
 			<div class="plan__social">
-				<a href="#" class="plan__social-item">
+				<a href="https://t.me/dreamcityuz" class="plan__social-item">
 					<IconsTelegram class="plan__social-icon" />
 				</a>
-				<a href="#" class="plan__social-item">
+				<a
+					href="https://www.facebook.com/dreamcity.uz?mibextid=wwXIfr&mibextid=wwXIfr"
+					class="plan__social-item">
 					<IconsFacebookCircular class="plan__social-icon" />
 				</a>
-				<a href="#" class="plan__social-item">
+				<a
+					href="https://www.instagram.com/dreamcity.uz?igsh=cWd6ZjdsMXhzeDR1&utm_source=qr"
+					class="plan__social-item">
 					<IconsInstagram class="plan__social-icon" />
 				</a>
 			</div>

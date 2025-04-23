@@ -73,13 +73,19 @@
 		<div class="apartment__bottom">
 			<ButtonCall :is-yellow="true" />
 			<div class="apartment__social">
-				<a target="_blank" href="https://telegram.org" class="apartment__social-item">
+				<a target="_blank" href="https://t.me/dreamcityuz" class="apartment__social-item">
 					<IconsTelegram class="apartment__social-icon" />
 				</a>
-				<a target="_blank" href="https://facebook.com" class="apartment__social-item">
+				<a
+					target="_blank"
+					href="https://www.facebook.com/dreamcity.uz?mibextid=wwXIfr&mibextid=wwXIfr"
+					class="apartment__social-item">
 					<IconsFacebookCircular class="apartment__social-icon" />
 				</a>
-				<a target="_blank" href="https://instagram.com" class="apartment__social-item">
+				<a
+					target="_blank"
+					href="https://www.instagram.com/dreamcity.uz?igsh=cWd6ZjdsMXhzeDR1&utm_source=qr"
+					class="apartment__social-item">
 					<IconsInstagram class="apartment__social-icon" />
 				</a>
 			</div>
