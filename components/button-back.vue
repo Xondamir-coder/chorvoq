@@ -51,7 +51,8 @@ const props = defineProps({
 		bottom: 0;
 		right: 0;
 		width: 20%;
-		fill: rgba($clr-primary, 0.6);
+		fill: $clr-primary;
+		opacity: 0.6;
 		transform: translate(50%, 25%);
 		transition: transform 0.3s, fill 0.3s;
 	}

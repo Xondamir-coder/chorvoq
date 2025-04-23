@@ -6,6 +6,7 @@ export const useCharvakStore = defineStore('charvak', () => {
 	const selectedFloor = ref();
 	const selectedSketch = ref();
 	const selectedApartment = ref();
+	const selectedFloorsCount = ref();
 
 	onMounted(() => {
 		selectedPhase.value = JSON.parse(localStorage.getItem('selectedPhase'));
@@ -17,27 +18,31 @@ export const useCharvakStore = defineStore('charvak', () => {
 
 	const setPhase = phase => {
 		selectedPhase.value = phase;
-		localStorage.setItem('selectedPhase', JSON.stringify(phase));
+		localStorage?.setItem('selectedPhase', JSON.stringify(phase));
 	};
 
 	const setBuilding = building => {
 		selectedBuilding.value = building;
-		localStorage.setItem('selectedBuilding', JSON.stringify(building));
+		localStorage?.setItem('selectedBuilding', JSON.stringify(building));
 	};
 
 	const setFloor = floor => {
 		selectedFloor.value = floor;
-		localStorage.setItem('selectedFloor', JSON.stringify(floor));
+		localStorage?.setItem('selectedFloor', JSON.stringify(floor));
 	};
 
 	const setSketch = sketch => {
 		selectedSketch.value = sketch;
-		localStorage.setItem('selectedSketch', JSON.stringify(sketch));
+		localStorage?.setItem('selectedSketch', JSON.stringify(sketch));
 	};
 
 	const setApartment = apartment => {
 		selectedApartment.value = apartment;
-		localStorage.setItem('selectedApartment', JSON.stringify(apartment));
+		localStorage?.setItem('selectedApartment', JSON.stringify(apartment));
+	};
+
+	const setFloorsCount = floorsCount => {
+		selectedFloorsCount.value = floorsCount;
 	};
 
 	return {
@@ -46,10 +51,12 @@ export const useCharvakStore = defineStore('charvak', () => {
 		selectedFloor,
 		selectedSketch,
 		selectedApartment,
+		selectedFloorsCount,
 		setPhase,
 		setBuilding,
 		setFloor,
 		setSketch,
-		setApartment
+		setApartment,
+		setFloorsCount
 	};
 });

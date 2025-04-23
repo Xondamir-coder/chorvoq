@@ -74,15 +74,25 @@ const { t } = useI18n();
 const router = useRouter();
 const route = useRoute();
 
-const floors = [7, 6, 5, 4, 3, 2, 1];
+const floor = ref();
+const apartments = ref();
 
-const floor = ref({});
-const apartments = ref([]);
-
+const floors = computed(() => {
+	const min = charvakStore.selectedFloorsCount?.min_floor ?? 1;
+	const max = charvakStore.selectedFloorsCount?.max_floor ?? 1;
+	return Array.from({ length: max - min + 1 }, (_, i) => i + min).reverse();
+});
 const blockName = computed(() => charvakStore.selectedFloor?.block?.name);
+const blockId = computed(() => route.query.block_id ?? charvakStore.selectedFloor?.block?.id);
 const schemaImg = computed(() => `${DOMAIN_URL}/${floor.value?.schema}`);
 
-const fetchData = async () => {
+const navigateToFloor = floorNum => {
+	router.push({
+		path: `/floors/${floorNum}`,
+		query: { block_id: route.params.block_id || charvakStore.selectedFloor?.block?.id }
+	});
+};
+const fetchFloors = async () => {
 	try {
 		const { data } = await useFetch(`${API_URL}/floors`, {
 			query: {
@@ -101,14 +111,23 @@ const fetchData = async () => {
 		console.error(error);
 	}
 };
-fetchData();
-
-const navigateToFloor = floorNum => {
-	router.push({
-		path: `/floors/${floorNum}`,
-		query: { block_id: route.params.block_id || charvakStore.selectedFloor?.block?.id }
-	});
+const fetchFloorsCount = async () => {
+	try {
+		const { data } = await useFetch(`${API_URL}/floors-count`, {
+			query: { block_id: blockId.value }
+		});
+		charvakStore.setFloorsCount({ ...data.value, block_id: blockId.value });
+	} catch (error) {
+		console.error(error);
+	}
 };
+
+if (
+	!charvakStore.selectedFloorsCount ||
+	charvakStore.selectedFloorsCount.block_id !== blockId.value
+)
+	fetchFloorsCount();
+fetchFloors();
 
 useHead({
 	title: t('apartments')

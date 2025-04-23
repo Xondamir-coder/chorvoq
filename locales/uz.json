@@ -7,6 +7,11 @@
 	"route-genplan": "Umumiy reja",
 	"route-advantage": "Afzallik",
 
+	"preloader-text": "Har bir",
+	"preloader-text-1": "rezident uchun",
+	"preloader-text-2": "sherik uchun",
+	"preloader-text-3": "investor uchun",
+
 	"back": "Orqaga",
 	"next": "Keyingi",
 	"living-space": "Yashash maydoni",
@@ -14,6 +19,7 @@
 	"floor": "Qavat",
 	"floors": "Qavatlar",
 	"order-call": "Qo'ng'iroq buyurtma qiling",
+	"call-ordered": "Qo'ng'iroq buyurtma qilindi",
 	"location-address": "Toshkent 118 2561 O'zbekiston",
 	"contacts": "Kontaktlar",
 	"advantages": "Afzalliklar",

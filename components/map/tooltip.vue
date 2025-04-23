@@ -92,7 +92,8 @@ const props = defineProps({
 
 	&__pattern {
 		transform: translate(40%, 40%);
-		fill: rgba($clr-primary, 0.6);
+		opacity: 0.6;
+		fill: $clr-primary;
 		&-container {
 			overflow: hidden;
 			width: 70%;

@@ -13,3 +13,14 @@
 			fill="#236192" />
 	</svg>
 </template>
+
+<style scoped lang="scss">
+svg[data-primary] {
+	path {
+		fill: $clr-primary;
+		&:nth-of-type(2) {
+			fill: $clr-tertiary;
+		}
+	}
+}
+</style>

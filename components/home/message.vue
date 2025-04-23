@@ -51,7 +51,16 @@
 					@input="validateInput"
 					@click="prependCountry"
 					@focus="prependCountry" />
-				<button class="message__button" type="submit">{{ $t('send-message') }}</button>
+				<button
+					class="message__button"
+					type="submit"
+					:disabled="
+						status === 'sending' || status === 'success' || tel.length !== MAX_DIGITS
+					">
+					<span v-if="status === 'awaiting'">{{ $t('order-call') }}</span>
+					<Spinner v-if="status === 'sending'" />
+					<span v-if="status === 'success'">{{ $t('call-ordered') }} ✅</span>
+				</button>
 			</form>
 		</div>
 	</section>
@@ -60,6 +69,7 @@
 <script setup>
 const name = ref('');
 const tel = ref('');
+const status = ref('awaiting');
 
 const COUNTRY = '+998 9';
 const MAX_DIGITS = 6 + 11;
@@ -88,12 +98,24 @@ const validateInput = e => {
 	}
 };
 const submitForm = async () => {
-	if (tel.value.length !== MAX_DIGITS) return;
 	const content = `
 Имя: ${name.value}
 Телефон: ${tel.value}
 `;
-	sendDataTelegram(content);
+
+	status.value = 'sending';
+	try {
+		await sendDataTelegram(content);
+		status.value = 'success';
+	} catch (error) {
+		console.error(error);
+	} finally {
+		name.value = '';
+		tel.value = '';
+		setTimeout(() => {
+			status.value = 'awaiting';
+		}, 2000);
+	}
 };
 const prependCountry = () => (!tel.value.includes(COUNTRY) ? (tel.value = COUNTRY) : null);
 
@@ -138,7 +160,10 @@ onMounted(() => {
 		margin-top: 12px;
 		padding-block: 16px;
 		transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-		&:hover {
+		&:disabled {
+			opacity: 0.7;
+		}
+		&:hover:not(:disabled) {
 			background-color: #fff;
 			color: $clr-primary;
 			box-shadow: 0px 10px 30px 0px rgba($clr-primary, 0.2);

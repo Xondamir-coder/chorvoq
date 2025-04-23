@@ -7,14 +7,19 @@
 	"route-genplan": "Ген.План",
 	"route-advantage": "Преимущество",
 
+	"preloader-text": "Для каждого",
+	"preloader-text-1": "резидента",
+	"preloader-text-2": "партнёра",
+	"preloader-text-3": "инвестора",
+
 	"next": "Следующий",
 	"living-space": "Жилая площадь",
-
 	"everyday": "Ежедневно",
 	"phase": "Фаза",
 	"floor": "Этаж",
 	"floors": "Этажи",
 	"order-call": "Заказать звонок",
+	"call-ordered": "Звонок заказан",
 	"location-address": "Toshkent 118 2561 Uzbekistan",
 	"contacts": "Контакты",
 	"advantages": "Преимущества",

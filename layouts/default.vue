@@ -1,12 +1,23 @@
 <template>
 	<div class="layout">
+		<Preloader />
 		<Header />
 		<slot />
 		<Footer />
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+const { $lenis } = useNuxtApp();
+if (import.meta.client) {
+	$lenis.stop();
+}
+useHead({
+	bodyAttrs: {
+		class: 'overflow-hidden'
+	}
+});
+</script>
 
 <style lang="scss" scoped>
 .layout {

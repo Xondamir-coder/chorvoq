@@ -7,6 +7,11 @@
 	"route-genplan": "Gen Plan",
 	"route-advantage": "Advantage",
 
+	"preloader-text": "For every",
+	"preloader-text-1": "resident",
+	"preloader-text-2": "partner",
+	"preloader-text-3": "investor",
+
 	"next": "Next",
 	"living-space": "Living Space",
 	"back": "Back",
@@ -14,6 +19,7 @@
 	"floor": "Floor",
 	"floors": "Floors",
 	"order-call": "Request a Call",
+	"call-ordered": "Call Ordered",
 	"location-address": "Toshkent 118 2561 Uzbekistan",
 	"contacts": "Contacts",
 	"advantages": "Advantages",
