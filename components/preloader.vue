@@ -52,22 +52,26 @@ const activeIndex = ref(0);
 const isHidden = ref(false);
 
 const percentages = [0, 57, 100];
-const INTERVAL_TIME = 1.25;
+const INTERVAL_TIME = 1.3;
 let interval;
 
 if (import.meta.client) {
-	interval = setInterval(() => {
-		if (activeIndex.value === words.value.length - 1) {
-			clearInterval(interval);
-			setTimeout(() => {
-				document.body.classList.remove('overflow-hidden');
-				$lenis.start();
-				isHidden.value = true;
-			}, 500);
-			return;
-		}
+	// Trigger the first increment earlier
+	setTimeout(() => {
 		activeIndex.value++;
-	}, INTERVAL_TIME * 1000);
+		interval = setInterval(() => {
+			if (activeIndex.value === words.value.length - 1) {
+				clearInterval(interval);
+				setTimeout(() => {
+					document.body.classList.remove('overflow-hidden');
+					$lenis.start();
+					isHidden.value = true;
+				}, 150);
+				return;
+			}
+			activeIndex.value++;
+		}, INTERVAL_TIME * 1000);
+	}, (INTERVAL_TIME * 1000) / 3); // Start earlier
 }
 </script>
 
