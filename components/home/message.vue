@@ -102,10 +102,9 @@ const submitForm = async () => {
 Имя: ${name.value}
 Телефон: ${tel.value}
 `;
-
 	status.value = 'sending';
 	try {
-		await sendDataTelegram(content);
+		await useSendTelegram(content);
 		status.value = 'success';
 	} catch (error) {
 		console.error(error);

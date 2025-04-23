@@ -1,9 +1,5 @@
 <template>
-	<a
-		href="tel:+998 71 202 22 22"
-		class="tel"
-		@click="orderCall"
-		:class="{ 'tel--yellow': isYellow }">
+	<a href="tel:+998 71 202 22 22" class="tel" :class="{ 'tel--yellow': isYellow }">
 		<div class="tel__circle">
 			<IconsPhone class="tel__icon" />
 		</div>
@@ -19,7 +15,7 @@ const orderCall = () => {
 	const content = `
 	zxc
 `;
-	sendDataTelegram(content);
+	useSendTelegram(content);
 };
 
 defineProps({
