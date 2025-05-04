@@ -7,10 +7,33 @@ const formatOptions = {
 	day: 'numeric',
 	year: 'numeric'
 };
+const CRM_URL = 'http://45.9.231.175:81/api/WebForm/SendWebForm';
+const PROJECT_NAME = 'Chorvoq Darvozasi';
+const PROJECT_ID = 42;
 
-export const useSendTelegram = async content => {
+const sendDataToCRM = async ({ name, phone }) => {
+	const trimmedPhone = phone.replaceAll(' ', '');
+	try {
+		const res = await $fetch(CRM_URL, {
+			method: 'POST',
+			body: {
+				nameSurname: name,
+				phone: trimmedPhone,
+				projectID: PROJECT_ID,
+				projectName: PROJECT_NAME,
+				comfirmTems: true
+			}
+		});
+		return res;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const useSendTelegram = async ({ name, phone }) => {
 	const text = `
-${content.trim()}
+Имя: ${name}
+Телефон: ${phone}
 Дата: ${Intl.DateTimeFormat('en-GB', formatOptions).format(Date.now())}
 `;
 	const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -19,6 +42,7 @@ ${content.trim()}
 			method: 'POST',
 			body: { chat_id: TELEGRAM_CHAT_ID, text }
 		});
+		await sendDataToCRM({ name, phone });
 		return res;
 	} catch (e) {
 		console.error(e);

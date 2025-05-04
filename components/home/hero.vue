@@ -17,13 +17,18 @@
 			</div>
 			<div class="hero__buttons">
 				<NuxtLink to="/genplan" class="hero__button">{{ $t('select-apartment') }}</NuxtLink>
-				<a href="tel:+998 71 210 44 54" class="hero__button">{{ $t('contact-us') }}</a>
+				<button @click="showModal = true" class="hero__button">
+					{{ $t('contact-us') }}
+				</button>
 			</div>
 		</div>
 	</section>
+	<ModalForm v-model="showModal" />
 </template>
 
-<script setup></script>
+<script setup>
+const showModal = ref(false);
+</script>
 
 <style lang="scss" scoped>
 @keyframes slide-from-top {

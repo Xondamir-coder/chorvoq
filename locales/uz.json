@@ -12,6 +12,15 @@
 	"preloader-text-2": "sherik uchun",
 	"preloader-text-3": "investor uchun",
 
+	"error-title": "Xatolik, biz topa olmadik siz izlagan sahifani.",
+	"error-text": "Siz izlagan sahifa o'chirilgan, uning nomi o'zgartirilgan yoki vaqtinchalik mavjud emas.",
+
+	"send-enquiry": "Murojaatni yuboring",
+	"leave-enquiry": "Murojaat qoldiring",
+	"sending-enquiry": "Murojaat yuborilmoqda",
+	"sent-enquiry": "Murojaat yuborildi",
+	"confirm-terms": "«Yuborish» tugmasini bosish orqali, siz shaxsiy ma'lumotlarni qayta ishlashga rozilik berasiz",
+	"back-home": "Bosh sahifaga qaytish",
 	"schema": "Sxema",
 	"back": "Orqaga",
 	"next": "Keyingi",

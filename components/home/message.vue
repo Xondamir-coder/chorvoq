@@ -98,13 +98,9 @@ const validateInput = e => {
 	}
 };
 const submitForm = async () => {
-	const content = `
-Имя: ${name.value}
-Телефон: ${tel.value}
-`;
 	status.value = 'sending';
 	try {
-		await useSendTelegram(content);
+		await useSendTelegram({ name: name.value, phone: tel.value });
 		status.value = 'success';
 	} catch (error) {
 		console.error(error);

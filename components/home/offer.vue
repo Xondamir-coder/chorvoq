@@ -5,12 +5,15 @@
 			<h3 class="offer__label">{{ $t('easy-cheap') }}</h3>
 			<h2 class="offer__title">{{ $t('home-offer-title') }}</h2>
 			<p class="offer__text">{{ $t('home-offer-text') }}</p>
-			<a href="tel:+998 71 210 44 54" class="offer__button">{{ $t('contact-us') }}</a>
+			<button class="offer__button" @click="showModal = true">{{ $t('contact-us') }}</button>
 		</div>
 	</section>
+	<ModalForm v-model="showModal" />
 </template>
 
 <script setup>
+const showModal = ref(false);
+
 onMounted(() => {
 	const parentPrefix = '#home-offer .offer';
 	GSAPAnimation(`${parentPrefix}__image`, {

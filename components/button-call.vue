@@ -1,5 +1,5 @@
 <template>
-	<a href="tel:+998 71 202 22 22" class="tel" :class="{ 'tel--yellow': isYellow }">
+	<button @click="showModal = true" class="tel" :class="{ 'tel--yellow': isYellow }">
 		<div class="tel__circle">
 			<IconsPhone class="tel__icon" />
 		</div>
@@ -7,16 +7,12 @@
 			<h3 class="tel__title"><span style="opacity: 0.73">71</span> 202 22 22</h3>
 			<p class="tel__text">{{ $t('order-call') }}</p>
 		</div>
-	</a>
+	</button>
+	<ModalForm v-model="showModal" />
 </template>
 
 <script setup>
-const orderCall = () => {
-	const content = `
-	zxc
-`;
-	useSendTelegram(content);
-};
+const showModal = ref(false);
 
 defineProps({
 	isYellow: {

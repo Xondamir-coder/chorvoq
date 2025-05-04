@@ -15,7 +15,8 @@ export default defineNuxtConfig({
 
 	app: {
 		head: {
-			titleTemplate: '%s | Chorvoq Darvozasi'
+			titleTemplate: '%s | Chorvoq Darvozasi',
+			link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' }]
 		}
 	},
 	css: [

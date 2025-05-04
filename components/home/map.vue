@@ -4,16 +4,18 @@
 		<div class="map__overlay"></div>
 		<div class="map__buttons">
 			<NuxtLink to="/genplan" class="map__button">{{ $t('select-apartment') }}</NuxtLink>
-			<a href="tel:+998 71 210 44 54" class="map__button">{{ $t('contact-us') }}</a>
+			<button class="map__button" @click="showModal = true">{{ $t('contact-us') }}</button>
 		</div>
 		<div class="map__production">
 			<span>{{ $t('developed-by') }}</span>
 			<VectorsDiscoverInvest class="map__logo" />
 		</div>
 	</section>
+	<ModalForm v-model="showModal" />
 </template>
 
 <script setup>
+const showModal = ref(false);
 onMounted(() => {
 	GSAPAnimation('#home-map .map__button', {
 		animProps: { y: 20, stagger: 0.2 },
