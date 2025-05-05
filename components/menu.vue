@@ -107,6 +107,7 @@ const navigateSection = to => {
 	align-items: center;
 	padding-left: $layout-spacing;
 	padding-top: 23px;
+	color: #fff;
 	@media only screen and (min-width: $bp-md) {
 		display: none;
 	}

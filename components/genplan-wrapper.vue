@@ -56,7 +56,6 @@
 	<Transition name="slide-in">
 		<MapModal :data="selectedCommercial" v-if="showModal" @next="showNextCommercial" />
 	</Transition>
-	<MapInfo />
 	<Transition name="popup-fade">
 		<InactivePopup v-if="showInactivePopup" @close="showInactivePopup = false" />
 	</Transition>
@@ -156,27 +155,6 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.slide-in-enter-active,
-.slide-in-leave-active {
-	transition: all 0.3s ease;
-}
-.slide-in-enter-from,
-.slide-in-leave-to {
-	translate: 0 20px;
-	opacity: 0;
-}
-.popup-fade {
-	&-enter-active,
-	&-leave-active {
-		transition: opacity 0.3s ease, transform 0.3s ease;
-	}
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-		transform: scale(1.1);
-	}
-}
-
 .plan {
 	display: grid;
 
@@ -199,16 +177,17 @@ onUnmounted(() => {
 	}
 	&__main {
 		position: relative;
-
-		@media only screen and (min-width: $bp-lg) {
-			height: 100vh;
-			width: 100vw;
-		}
+		height: 100vh;
+		width: 100vw;
 		@media only screen and (max-width: $bp-lg) {
 			display: grid;
-			overflow-x: scroll;
+			overflow: scroll;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
 		}
-
 		& > * {
 			object-fit: cover;
 			@media only screen and (min-width: $bp-lg) {
@@ -335,7 +314,26 @@ onUnmounted(() => {
 		transition: fill 0.3s;
 	}
 }
-
+.slide-in-enter-active,
+.slide-in-leave-active {
+	transition: all 0.3s ease;
+}
+.slide-in-enter-from,
+.slide-in-leave-to {
+	translate: 0 20px;
+	opacity: 0;
+}
+.popup-fade {
+	&-enter-active,
+	&-leave-active {
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
+		transform: scale(1.1);
+	}
+}
 .fade {
 	&-enter-active,
 	&-leave-active,

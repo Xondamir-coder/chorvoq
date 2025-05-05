@@ -1,14 +1,7 @@
 <template>
-	<Transition name="fade">
-		<div class="overlay" v-if="!isOverlayClosed" @click="isOverlayClosed = true">
-			<img
-				class="overlay__image"
-				src="~/assets/images/map-info.png"
-				alt="info banner"
-				width="372"
-				height="336" />
-		</div>
-	</Transition>
+	<ModalContainer v-model="isOverlayClosed">
+		<p>hello</p>
+	</ModalContainer>
 </template>
 
 <script setup>

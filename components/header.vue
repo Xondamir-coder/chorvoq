@@ -34,7 +34,8 @@
 		<Transition name="fade">
 			<Menu v-if="isMenuOpen" @close="toggleMenu" />
 		</Transition>
-		<VectorsLogo class="header__vector header__vector--center" />
+		<VectorsLogoColored class="header__vector header__vector--center" v-if="isColorful" />
+		<VectorsLogo class="header__vector header__vector--center" v-else />
 		<nav class="nav">
 			<a
 				v-for="link in routingLinks"
@@ -47,11 +48,13 @@
 		</nav>
 		<div class="header__cta">
 			<div class="header__dropdown">
-				<button class="header__locale">UZ <IconsArrowDown /></button>
+				<button class="header__locale">
+					{{ capitalize($i18n.locale) }} <IconsArrowDown />
+				</button>
 			</div>
-			<a href="tel:+998 71 210 44 54" class="header__call">
+			<button class="header__call" @click="showModalForm = true">
 				<IconsPhone class="header__phone" />
-			</a>
+			</button>
 		</div>
 		<div class="header__languages">
 			<button
@@ -64,6 +67,7 @@
 			</button>
 		</div>
 	</header>
+	<ModalForm v-model="showModalForm" />
 </template>
 
 <script setup>
@@ -73,6 +77,7 @@ const { setLocale } = useI18n();
 const route = useRoute();
 const router = useRouter();
 
+const showModalForm = ref(false);
 const isMenuOpen = ref(false);
 const isColorful = computed(
 	() => route.name.includes('floors') || route.name.includes('apartments')

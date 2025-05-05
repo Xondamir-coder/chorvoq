@@ -136,7 +136,7 @@ if (import.meta.client) {
 	position: fixed;
 	inset: 0;
 	background-color: #fff;
-	z-index: 101;
+	z-index: 500;
 	color: $clr-primary;
 	padding-inline: $layout-spacing;
 	padding-block: clamp(10.5px, 2.65vw, 40px);

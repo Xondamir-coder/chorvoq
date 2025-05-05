@@ -1,5 +1,8 @@
 <template>
 	<main class="floor">
+		<ButtonBack
+			:to="`/buildings/${charvakStore.selectedBuilding?.building_id}`"
+			class="back-mobile" />
 		<div class="floor__container">
 			<nav class="floor__buttons">
 				<NuxtLink
@@ -20,7 +23,9 @@
 				</NuxtLink>
 			</nav>
 			<div class="floor__center">
-				<ButtonBack :to="`/buildings/${charvakStore.selectedBuilding?.building_id}`" />
+				<ButtonBack
+					:to="`/buildings/${charvakStore.selectedBuilding?.building_id}`"
+					class="back-laptop" />
 				<div class="floor__wrapper">
 					<ClientOnly>
 						<Transition name="fade">
@@ -88,7 +93,9 @@ const isDownloading = ref(false);
 const floors = computed(() => {
 	const min = charvakStore.selectedFloorsCount?.min_floor ?? 1;
 	const max = charvakStore.selectedFloorsCount?.max_floor ?? 1;
-	return Array.from({ length: max - min + 1 }, (_, i) => i + min).reverse();
+	return window.innerWidth > 768
+		? Array.from({ length: max - min + 1 }, (_, i) => i + min).reverse()
+		: Array.from({ length: max - min + 1 }, (_, i) => i + min);
 });
 const blockName = computed(() => charvakStore.selectedFloor?.block?.name);
 const blockId = computed(() => route.query.block_id ?? charvakStore.selectedFloor?.block?.id);
@@ -189,6 +196,18 @@ useHead({
 		border: 1px solid $clr-secondary-darkest;
 	}
 }
+.back {
+	&-laptop {
+		@media only screen and (max-width: $bp-lg) {
+			display: none;
+		}
+	}
+	&-mobile {
+		@media only screen and (min-width: $bp-lg) {
+			display: none;
+		}
+	}
+}
 .floor {
 	flex: 1;
 	display: flex;
@@ -200,6 +219,9 @@ useHead({
 	padding-inline: $layout-spacing;
 	justify-content: center;
 	padding-block: 40px;
+	@media only screen and (max-width: $bp-md) {
+		justify-content: space-between;
+	}
 	&__image {
 		aspect-ratio: 1.6;
 		align-self: center;
@@ -211,6 +233,10 @@ useHead({
 		flex-direction: column;
 		width: 70%;
 		margin-inline: auto;
+		@media only screen and (max-width: $bp-md) {
+			width: 100%;
+			margin-inline: initial;
+		}
 	}
 	&__path {
 		fill: rgba(255, 255, 255, 0.2);
@@ -224,6 +250,10 @@ useHead({
 		align-self: center;
 		display: grid;
 		padding-right: 7%;
+		@media only screen and (max-width: $bp-md) {
+			width: 100%;
+			padding-right: initial;
+		}
 		& > * {
 			grid-area: 1/1/2/2;
 		}
@@ -253,6 +283,9 @@ useHead({
 	&__bottom {
 		display: flex;
 		justify-content: space-between;
+		@media only screen and (max-width: $bp-md) {
+			display: none;
+		}
 	}
 	&__social {
 		align-self: center;
@@ -312,18 +345,26 @@ useHead({
 	}
 	&__container {
 		display: flex;
+		@media only screen and (max-width: $bp-md) {
+			flex-direction: column;
+			gap: 30px;
+		}
 	}
 	&__buttons {
 		align-self: center;
 		display: flex;
 		gap: 20px;
 		flex-direction: column;
+		@media only screen and (max-width: $bp-md) {
+			flex-direction: row;
+		}
 	}
 	&__button {
 		cursor: pointer;
 		color: $clr-secondary-darkest;
 		display: flex;
 		gap: 9px;
+
 		&.active {
 			.floor__button-content {
 				animation: slide-from-bottom 0.3s forwards;
@@ -348,15 +389,19 @@ useHead({
 			flex-direction: column;
 			font-size: min(0.9vw, 14px);
 			line-height: 1.1;
+			@media only screen and (max-width: $bp-md) {
+				display: none;
+			}
 		}
 		&-num {
 			@include flex-center;
-			width: min(2.5vw, 40px);
+			width: 40px;
 			aspect-ratio: 1;
 			border-radius: 50%;
 			border: 1px solid transparent;
 			box-shadow: 0px 1px 10px 0px rgba(255, 255, 255, 0.33) inset;
 			font-weight: 700;
+			font-size: 20px;
 		}
 	}
 }

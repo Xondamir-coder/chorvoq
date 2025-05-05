@@ -1,6 +1,27 @@
 <template>
 	<main class="apartment" :id="`apartment-${route.params.apartment_id}`">
 		<div class="apartment__container">
+			<ButtonBack :to="`/floors/${floorNumber}?block_id=${blockId}`" class="back-mobile" />
+			<div class="apartment__top apartment__top--mobile">
+				<span class="apartment__labels">
+					<span>
+						{{ $t('phase') }}:
+						{{ formatNumber(apartment?.phase_id) }}
+					</span>
+					/
+					<span>{{ $t('block') }}: {{ apartment?.block?.name ?? '0' }}</span>
+					/
+					<span>{{ $t('floor') }}: {{ formatNumber(apartment?.floor) }}</span>
+					/
+					<span>{{ $t('apartment') }}: {{ formatNumber(apartment?.unit) }}</span>
+				</span>
+				<h2 class="apartment__title">
+					{{ $t('apartment') }} №
+					{{ formatNumber(apartment?.unit) }}
+					{{ $t('with-area') }} {{ apartment?.area }}
+					{{ $t('m-squared') }}
+				</h2>
+			</div>
 			<div class="apartment__box">
 				<ButtonBack :to="`/floors/${floorNumber}?block_id=${blockId}`" />
 				<div class="apartment__wrapper">
@@ -199,6 +220,11 @@ useHead({
 		transform: scale(1);
 	}
 }
+.back-mobile {
+	@media only screen and (min-width: $bp-md) {
+		display: none;
+	}
+}
 .apartment {
 	background-image: url('~/assets/images/blur.png');
 	background-repeat: no-repeat;
@@ -214,13 +240,22 @@ useHead({
 		object-fit: contain;
 		aspect-ratio: 376/470;
 		&--apart {
+			align-self: center;
 			animation: scale-up 0.5s backwards 0.2s;
+			@media only screen and (max-width: $bp-md) {
+				max-width: 400px;
+			}
 		}
 	}
 	&__main {
 		display: flex;
 		flex-direction: column;
 		gap: min(2vw, 30px);
+		@media only screen and (max-width: $bp-md) {
+			align-self: stretch;
+			margin-top: 30px;
+			gap: 60px;
+		}
 	}
 	&__button {
 		min-width: 60%;
@@ -236,6 +271,10 @@ useHead({
 		letter-spacing: 0.3px;
 		transition: background-color 0.3s, color 0.3s;
 
+		@media only screen and (max-width: $bp-md) {
+			align-self: center;
+			min-width: 172px;
+		}
 		&:disabled {
 			cursor: not-allowed;
 			opacity: 0.7;
@@ -250,6 +289,9 @@ useHead({
 		line-height: 1.2;
 		color: $clr-secondary;
 		animation: slide-from-left 0.3s 0.3s backwards;
+		@media only screen and (max-width: $bp-md) {
+			text-align: center;
+		}
 	}
 	&__labels {
 		color: $clr-secondary;
@@ -257,6 +299,9 @@ useHead({
 		font-size: 0.85rem;
 		display: flex;
 		gap: 16px;
+		@media only screen and (max-width: $bp-md) {
+			justify-content: center;
+		}
 		span {
 			text-decoration: underline;
 			@for $i from 1 through 4 {
@@ -275,11 +320,21 @@ useHead({
 		display: flex;
 		flex-direction: column;
 		gap: 17px;
+		&--mobile {
+			@media only screen and (min-width: $bp-md) {
+				display: none;
+			}
+		}
+		&:not(&--mobile) {
+			@media only screen and (max-width: $bp-md) {
+				display: none;
+			}
+		}
 	}
 	&__details {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-		row-gap: clamp(18px, 2vw, 30px);
+		gap: clamp(18px, 2vw, 30px);
 	}
 	&__detail {
 		display: flex;
@@ -300,9 +355,18 @@ useHead({
 		&-rooms {
 			font-weight: 700;
 			font-size: 0.85rem;
+			@media only screen and (max-width: $bp-md) {
+				font-weight: 700;
+				font-size: 21px;
+				opacity: 0.5;
+			}
 		}
 		&-area {
 			font-size: 0.9rem;
+			@media only screen and (max-width: $bp-md) {
+				font-weight: 700;
+				font-size: 21px;
+			}
 		}
 	}
 	&__content {
@@ -314,11 +378,19 @@ useHead({
 	&__box {
 		display: flex;
 		flex-direction: column;
+		@media only screen and (max-width: $bp-md) {
+			display: none;
+		}
 	}
 	&__container {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 6vw;
+		@media only screen and (max-width: $bp-md) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 	}
 	&__link--active > * {
 		fill: $clr-primary !important;
@@ -331,6 +403,7 @@ useHead({
 		}
 	}
 	&__wrapper {
+		margin-block: auto;
 		align-self: center;
 		display: grid;
 		align-items: center;
@@ -342,6 +415,9 @@ useHead({
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		@media only screen and (max-width: $bp-md) {
+			display: none;
+		}
 	}
 	&__tel {
 		align-self: flex-start;
