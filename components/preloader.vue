@@ -63,7 +63,6 @@ if (import.meta.client) {
 			if (activeIndex.value === words.value.length - 1) {
 				clearInterval(interval);
 				setTimeout(() => {
-					document.body.classList.remove('overflow-hidden');
 					$lenis.start();
 					isHidden.value = true;
 				}, 150);

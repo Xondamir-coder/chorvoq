@@ -24,11 +24,6 @@ const { $lenis } = useNuxtApp();
 if (import.meta.client) {
 	$lenis.stop();
 }
-useHead({
-	bodyAttrs: {
-		class: 'overflow-hidden'
-	}
-});
 </script>
 
 <style lang="scss" scoped>
