@@ -14,7 +14,13 @@
 
 	"error-title": "Xatolik, biz topa olmadik siz izlagan sahifani.",
 	"error-text": "Siz izlagan sahifa o'chirilgan, uning nomi o'zgartirilgan yoki vaqtinchalik mavjud emas.",
+	"seo-home-desc": "Chorvoq Darvozasiga xush kelibsiz, Toshkent viloyatida zamonaviy kvartiralar, manzarali ko'rinishlar va yuqori darajadagi turmush tarzini taklif etuvchi yangi turar joy majmuasi. Mavjud bosqichlar, binolar va kvartiralarni hoziroq o'rganing",
+	"seo-home-ogdesc": "Toshkent viloyatida premium kvartiralar va investitsiya imkoniyatlarini o'rganing",
+	"seo-genplan-desc": "Chorvoq Darvozasining umumiy rejasini bosish mumkin bo'lgan bosqichlar, binolar va qavatlar bilan ko'ring, ideal kvartirangizni toping",
+	"seo-phases-desc": "Chorvoq Darvozasining {id} bosqichidagi binolarni o'rganing. Mavjud kvartiralar, bino rejalari va narxlash haqida ko'proq bilib oling",
+	"seo-buildings-desc": "Chorvoq Darvozasidagi {id} binodagi kvartiralar va qavat rejalari bilan tanishing. Keng, zamonaviy dizaynlar prime joylashuvda",
 
+	"buildings": "Binolar",
 	"render-text": "Siz rasmni ko'chirishingiz va yoqgan uyini tanlashingiz mumkin",
 	"full-render": "To'liq render",
 	"send-enquiry": "Murojaatni yuboring",

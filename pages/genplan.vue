@@ -14,7 +14,23 @@ const { data } = await useFetch(`${API_URL}/phases`);
 phases.value = data.value;
 
 useHead({
-	title: t('genplan')
+	title: t('genplan'),
+	meta: [
+		{ content: t('seo-genplan-desc'), name: 'description' },
+		{
+			name: 'keywords',
+			content: [
+				'Chorvoq Darvozasi masterplan',
+				'site plan Chorvoq Darvozasi',
+				'interactive genplan Tashkent',
+				'Chorvoq Darvozasi layout',
+				'residential site map Uzbekistan',
+				'phase overview Chorvoq',
+				'Chorvoq complex map',
+				'build-out map Tashkent region'
+			].join(', ')
+		}
+	]
 });
 </script>
 

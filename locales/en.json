@@ -12,9 +12,18 @@
 	"preloader-text-2": "partner",
 	"preloader-text-3": "investor",
 
+	"seo-home-desc": "Discover Chorvoq Darvozasi, a new residential complex offering modern apartments, scenic views, and premium lifestyle in the Tashkent region. Explore available phases, buildings, and apartments now",
+	"seo-home-ogdesc": "Explore premium apartments and investment opportunities in the Tashkent region",
+	"seo-genplan-desc": "View the entire genplan of Chorvoq Darvozasi with clickable phases, buildings, and floors to find your ideal apartment",
+	"seo-phases-desc": "Explore buildings in Phase {id} of Chorvoq Darvozasi. Learn more about available apartments, building plans, and pricing",
+	"seo-buildings-desc": "Discover apartments and floor layouts in Building {id} of Chorvoq Darvozasi. Spacious, modern designs in a prime location",
+	"seo-floors-desc": "Browse apartments on floor {id} in block {block_id}. View floor plans and availability in Chorvoq Darvozasi",
+	"seo-apartments-desc": "Explore Apartment {id} in Block {block}, Floor {floor} of Chorvoq Darvozasi",
+
 	"error-title": "Oops, We can't seem to find the page what you are looking for.",
 	"error-text": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
 
+	"buildings": "Buildings",
 	"render-text": "You can move the picture and select the house you like",
 	"full-render": "Full render",
 	"leave-enquiry": "Leave Enquiry",

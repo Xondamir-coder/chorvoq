@@ -123,7 +123,6 @@ const isDownloading = ref(false);
 const apartment = ref();
 
 const sketch = computed(() => charvakStore.selectedSketch);
-const unit = computed(() => apartment.value?.unit);
 
 const blockId = computed(() => route.query.block_id ?? charvakStore.selectedApartment?.block?.id);
 const floorNumber = computed(
@@ -174,8 +173,28 @@ const makePDF = async () => {
 	}
 };
 
+const keywords = [
+	`Apartment ${route.params.apartment_id} Chorvoq Darvozasi`,
+	`Chorvoq Darvozasi apartment price`,
+	`Block ${blockId.value} Floor ${floorNumber.value} unit`,
+	`modern apartment Chorvoq Darvozasi`,
+	`apartment with view Tashkent region`,
+	`turnkey apartment Chorvoq`
+];
+
 useHead({
-	title: `${t('apartment')}`
+	title: t('apartment'),
+	meta: [
+		{ name: 'keywords', content: keywords.join(', ') },
+		{
+			name: 'description',
+			content: t('seo-apartments-desc', {
+				id: route.params.apartment_id,
+				block: blockId.value,
+				floor: floorNumber.value
+			})
+		}
+	]
 });
 </script>
 

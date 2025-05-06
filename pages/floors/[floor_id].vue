@@ -173,7 +173,25 @@ if (
 fetchFloors();
 
 useHead({
-	title: t('apartments')
+	title: t('apartments'),
+	meta: [
+		{
+			name: 'description',
+			content: t('seo-floors-desc', { id: route.params.floor_id, block_id: blockId.value })
+		},
+		{
+			name: 'keywords',
+			content: [
+				`Block ${blockId.value} Floor ${floorNumber.value} apartments`,
+				`Floor ${floorNumber.value} Chorvoq Darvozasi`,
+				`Chorvoq Block ${blockId.value} floor ${floorNumber.value} plan`,
+				`buy ${floorNumber.value}th floor apartment Tashkent`,
+				`floor ${floorNumber.value} availability Chorvoq`,
+				`Block ${blockId.value} floor lineup`,
+				`residential floors Tashkent region`
+			].join(', ')
+		}
+	]
 });
 </script>
 

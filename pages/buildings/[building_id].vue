@@ -51,6 +51,25 @@ const changeFloor = direction => {
 };
 
 useHead({
-	title: t('floors')
+	title: t('floors'),
+	meta: [
+		{
+			name: 'description',
+			content: t('seo-buildings-desc', { id: params.building_id })
+		},
+		{
+			name: 'keywords',
+			content: [
+				`Building ${params.building_id} Chorvoq Darvozasi`,
+				`Chorvoq Building ${params.building_id} floor plans`,
+				`apartments in Building ${params.building_id}`,
+				`Building ${params.building_id} Tashkent region`,
+				`modern building ${params.building_id} Chorvoq`,
+				`Building ${params.building_id} amenities`,
+				`Chorvoq building details`,
+				`purchase in Building ${params.building_id}`
+			].join(', ')
+		}
+	]
 });
 </script>
