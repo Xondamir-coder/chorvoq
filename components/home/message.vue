@@ -71,8 +71,8 @@ const name = ref('');
 const tel = ref('');
 const status = ref('awaiting');
 
-const COUNTRY = '+998 9';
-const MAX_DIGITS = 6 + 11;
+const COUNTRY = '+998 ';
+const MAX_DIGITS = 17;
 const LENGTHS_WITH_SPACE = [7, 11, 14];
 
 const validateInput = e => {
@@ -83,7 +83,7 @@ const validateInput = e => {
 	}
 
 	// Always prepend country
-	if (tel.value.length < 7) {
+	if (tel.value.length < COUNTRY.length) {
 		tel.value = COUNTRY;
 	}
 

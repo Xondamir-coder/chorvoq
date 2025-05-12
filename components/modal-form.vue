@@ -45,8 +45,8 @@ const name = ref('');
 const phone = ref('');
 const status = ref('submit');
 
-const COUNTRY_CODE = '+998 9';
-const MAX_DIGITS = COUNTRY_CODE.length + 11;
+const COUNTRY_CODE = '+998 ';
+const MAX_DIGITS = 17;
 const LENGTHS_WITH_SPACE = [7, 11, 14];
 
 const prependCountry = () => phone.value.includes(COUNTRY_CODE) || (phone.value = COUNTRY_CODE);
@@ -58,7 +58,7 @@ const validateInput = e => {
 	}
 
 	// Always prepend country
-	if (phone.value.length < 7) {
+	if (phone.value.length < COUNTRY_CODE.length) {
 		phone.value = COUNTRY_CODE;
 	}
 
