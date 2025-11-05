@@ -7,7 +7,7 @@
         <!-- Tablet: HD -->
         <source src="/videos/hero-720.mp4" type="video/mp4" media="(min-width: 768px)" />
         <!-- Mobile: SD -->
-        <source src="/videos/hero-480.mp4" type="video/mp4" media="(max-width: 767px)" />
+        <source src="/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -113,6 +113,9 @@ const showModal = ref(false);
     display: flex;
     gap: clamp(12px, 2.9vw, 44px);
     flex-wrap: wrap;
+    @media screen and (max-width: $bp-md) {
+      margin-top: auto;
+    }
   }
   &__title {
     letter-spacing: -2px;
@@ -156,8 +159,7 @@ const showModal = ref(false);
       flex-direction: column;
       gap: 6px;
       @media only screen and (max-width: $bp-md) {
-        margin-block: auto;
-        gap: 20px;
+        display: none;
       }
     }
   }
