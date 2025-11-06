@@ -10,6 +10,10 @@
         <source src="/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
         Your browser does not support the video tag.
       </video>
+      <picture class="hero__picture">
+        <source srcset="/images/hero.avif" type="image/avif" />
+        <img src="/images/hero.jpg" alt="hero pic" class="hero__picture-image" />
+      </picture>
     </div>
     <div class="hero__content">
       <div class="hero__content-texts">
@@ -163,12 +167,23 @@ const showModal = ref(false);
       }
     }
   }
+  &__picture {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    @media screen and (min-width: $bp-md) {
+      display: none;
+    }
+  }
   &__video {
     width: 100%;
     height: 100vh;
     object-fit: cover;
     pointer-events: none;
     position: relative;
+    @media screen and (max-width: $bp-md) {
+      display: none;
+    }
     &-wrapper {
       position: relative;
       &::before {
