@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
     <div class="hero__video-wrapper">
-      <video autoplay loop muted class="hero__video">
+      <video autoplay loop muted playsinline class="hero__video">
         <!-- Desktop: Full HD -->
         <source src="/videos/hero-1080.mp4" type="video/mp4" media="(min-width: 1200px)" />
         <!-- Tablet: HD -->
