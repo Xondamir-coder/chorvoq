@@ -3,17 +3,13 @@
     <div class="hero__video-wrapper">
       <video autoplay loop muted playsinline class="hero__video">
         <!-- Desktop: Full HD -->
-        <source src="/videos/hero-1080.mp4" type="video/mp4" media="(min-width: 1200px)" />
+        <source src="/videos/hero-1080p.mp4" type="video/mp4" media="(min-width: 1280px)" />
         <!-- Tablet: HD -->
-        <source src="/videos/hero-720.mp4" type="video/mp4" media="(min-width: 768px)" />
+        <source src="/videos/hero-720p.mp4" type="video/mp4" media="(min-width: 768px)" />
         <!-- Mobile: SD -->
-        <source src="/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+        <source src="/videos/hero-480p.mp4" type="video/mp4" media="(max-width: 767px)" />
         Your browser does not support the video tag.
       </video>
-      <picture class="hero__picture">
-        <source srcset="/images/hero.avif" type="image/avif" />
-        <img src="/images/hero.jpg" alt="hero pic" class="hero__picture-image" />
-      </picture>
     </div>
     <div class="hero__content">
       <div class="hero__content-texts">
@@ -117,9 +113,6 @@ const showModal = ref(false);
     display: flex;
     gap: clamp(12px, 2.9vw, 44px);
     flex-wrap: wrap;
-    @media screen and (max-width: $bp-md) {
-      margin-top: auto;
-    }
   }
   &__title {
     letter-spacing: -2px;
@@ -151,28 +144,10 @@ const showModal = ref(false);
     padding-inline: $layout-spacing;
     margin-bottom: 46px;
     gap: 21px;
-    @media only screen and (max-width: $bp-md) {
-      align-items: center;
-      text-align: center;
-      align-self: stretch;
-      justify-self: stretch;
-      padding-top: 90px;
-    }
     &-texts {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      @media only screen and (max-width: $bp-md) {
-        display: none;
-      }
-    }
-  }
-  &__picture {
-    display: flex;
-    position: absolute;
-    inset: 0;
-    @media screen and (min-width: $bp-md) {
-      display: none;
     }
   }
   &__video {
@@ -181,9 +156,6 @@ const showModal = ref(false);
     object-fit: cover;
     pointer-events: none;
     position: relative;
-    @media screen and (max-width: $bp-md) {
-      display: none;
-    }
     &-wrapper {
       position: relative;
       &::before {
