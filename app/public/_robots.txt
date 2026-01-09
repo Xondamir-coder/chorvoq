@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://chorvoqdarvozasi.uz/sitemap.xml
